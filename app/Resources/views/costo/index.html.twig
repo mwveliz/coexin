@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Costo list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Materialimportado</th>
+                <th>Materialnacional</th>
+                <th>Manoobra</th>
+                <th>Depreciacion</th>
+                <th>Otrocostodirecto</th>
+                <th>Gastoadmim</th>
+                <th>Gastopublicidad</th>
+                <th>Gastoventa</th>
+                <th>Otrogastoindirecto</th>
+                <th>Utilidad</th>
+                <th>Preciopuertafabrica</th>
+                <th>Fleteinterno</th>
+                <th>Preciofobexportacion</th>
+                <th>Preciofcaexportacion</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for costo in costos %}
+            <tr>
+                <td><a href="{{ path('costo_show', { 'id': costo.id }) }}">{{ costo.materialImportado }}</a></td>
+                <td>{{ costo.materialNacional }}</td>
+                <td>{{ costo.manoObra }}</td>
+                <td>{{ costo.depreciacion }}</td>
+                <td>{{ costo.otroCostoDirecto }}</td>
+                <td>{{ costo.gastoAdmim }}</td>
+                <td>{{ costo.gastoPublicidad }}</td>
+                <td>{{ costo.gastoVenta }}</td>
+                <td>{{ costo.otroGastoIndirecto }}</td>
+                <td>{{ costo.utilidad }}</td>
+                <td>{{ costo.precioPuertaFabrica }}</td>
+                <td>{{ costo.fleteInterno }}</td>
+                <td>{{ costo.precioFobExportacion }}</td>
+                <td>{{ costo.precioFcaExportacion }}</td>
+                <td>{{ costo.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('costo_show', { 'id': costo.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('costo_edit', { 'id': costo.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('costo_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

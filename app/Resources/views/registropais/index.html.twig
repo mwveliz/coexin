@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>RegistroPais list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for registroPai in registroPais %}
+            <tr>
+                <td><a href="{{ path('registropais_show', { 'id': registroPai.id }) }}">{{ registroPai.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('registropais_show', { 'id': registroPai.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('registropais_edit', { 'id': registroPai.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('registropais_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

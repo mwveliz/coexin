@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Costo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Materialimportado</th>
+                <td>{{ costo.materialImportado }}</td>
+            </tr>
+            <tr>
+                <th>Materialnacional</th>
+                <td>{{ costo.materialNacional }}</td>
+            </tr>
+            <tr>
+                <th>Manoobra</th>
+                <td>{{ costo.manoObra }}</td>
+            </tr>
+            <tr>
+                <th>Depreciacion</th>
+                <td>{{ costo.depreciacion }}</td>
+            </tr>
+            <tr>
+                <th>Otrocostodirecto</th>
+                <td>{{ costo.otroCostoDirecto }}</td>
+            </tr>
+            <tr>
+                <th>Gastoadmim</th>
+                <td>{{ costo.gastoAdmim }}</td>
+            </tr>
+            <tr>
+                <th>Gastopublicidad</th>
+                <td>{{ costo.gastoPublicidad }}</td>
+            </tr>
+            <tr>
+                <th>Gastoventa</th>
+                <td>{{ costo.gastoVenta }}</td>
+            </tr>
+            <tr>
+                <th>Otrogastoindirecto</th>
+                <td>{{ costo.otroGastoIndirecto }}</td>
+            </tr>
+            <tr>
+                <th>Utilidad</th>
+                <td>{{ costo.utilidad }}</td>
+            </tr>
+            <tr>
+                <th>Preciopuertafabrica</th>
+                <td>{{ costo.precioPuertaFabrica }}</td>
+            </tr>
+            <tr>
+                <th>Fleteinterno</th>
+                <td>{{ costo.fleteInterno }}</td>
+            </tr>
+            <tr>
+                <th>Preciofobexportacion</th>
+                <td>{{ costo.precioFobExportacion }}</td>
+            </tr>
+            <tr>
+                <th>Preciofcaexportacion</th>
+                <td>{{ costo.precioFcaExportacion }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ costo.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('costo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('costo_edit', { 'id': costo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

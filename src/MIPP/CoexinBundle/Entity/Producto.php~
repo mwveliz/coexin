@@ -1,0 +1,84 @@
+<?php
+
+namespace MIPP\CoexinBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Producto
+ *
+ * @ORM\Table(name="producto", indexes={@ORM\Index(name="IDX_A7BB0615E5B499E9", columns={"id_codigo_arancelario"}), @ORM\Index(name="IDX_A7BB061517E2BDF1", columns={"id_codigo_ncm"}), @ORM\Index(name="IDX_A7BB0615963C9EC0", columns={"id_moneda"})})
+ * @ORM\Entity
+ */
+class Producto
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="denominacion_comercial", type="string", nullable=true)
+     */
+    private $denominacionComercial;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="unidad_medida", type="string", nullable=true)
+     */
+    private $unidadMedida;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="proceso_productivo_literal", type="text", nullable=true)
+     */
+    private $procesoProductivoLiteral;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=true)
+     */
+    private $isActive;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="producto_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var \MIPP\CoexinBundle\Entity\CodigoArancelario
+     *
+     * @ORM\ManyToOne(targetEntity="MIPP\CoexinBundle\Entity\CodigoArancelario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_codigo_arancelario", referencedColumnName="id")
+     * })
+     */
+    private $idCodigoArancelario;
+
+    /**
+     * @var \MIPP\CoexinBundle\Entity\CodigoNcm
+     *
+     * @ORM\ManyToOne(targetEntity="MIPP\CoexinBundle\Entity\CodigoNcm")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_codigo_ncm", referencedColumnName="id")
+     * })
+     */
+    private $idCodigoNcm;
+
+    /**
+     * @var \MIPP\CoexinBundle\Entity\Moneda
+     *
+     * @ORM\ManyToOne(targetEntity="MIPP\CoexinBundle\Entity\Moneda")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_moneda", referencedColumnName="id")
+     * })
+     */
+    private $idMoneda;
+
+
+}

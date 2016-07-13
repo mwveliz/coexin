@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Material</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ material.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Materialnacional</th>
+                <td>{% if material.materialNacional %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Incidenciasobrecosto</th>
+                <td>{{ material.incidenciaSobreCosto }}</td>
+            </tr>
+            <tr>
+                <th>Nombreproductor</th>
+                <td>{{ material.nombreProductor }}</td>
+            </tr>
+            <tr>
+                <th>Nombreproveedor</th>
+                <td>{{ material.nombreProveedor }}</td>
+            </tr>
+            <tr>
+                <th>Isactive</th>
+                <td>{% if material.isActive %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ material.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('material_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('material_edit', { 'id': material.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,134 @@
+<?php
+
+namespace MIPP\CoexinBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Costo
+ *
+ * @ORM\Table(name="costo", indexes={@ORM\Index(name="IDX_BB1C0BE7F760EA80", columns={"id_producto"})})
+ * @ORM\Entity
+ */
+class Costo
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="material_importado", type="string", nullable=true)
+     */
+    private $materialImportado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="material_nacional", type="string", nullable=true)
+     */
+    private $materialNacional;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mano_obra", type="string", nullable=true)
+     */
+    private $manoObra;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="depreciacion", type="string", nullable=true)
+     */
+    private $depreciacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="otro_costo_directo", type="string", nullable=true)
+     */
+    private $otroCostoDirecto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="gasto_admim", type="string", nullable=true)
+     */
+    private $gastoAdmim;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="gasto_publicidad", type="string", nullable=true)
+     */
+    private $gastoPublicidad;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="gasto_venta", type="string", nullable=true)
+     */
+    private $gastoVenta;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="otro_gasto_indirecto", type="string", nullable=true)
+     */
+    private $otroGastoIndirecto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="utilidad", type="string", nullable=true)
+     */
+    private $utilidad;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="precio_puerta_fabrica", type="string", nullable=true)
+     */
+    private $precioPuertaFabrica;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flete_interno", type="string", nullable=true)
+     */
+    private $fleteInterno;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="precio_fob_exportacion", type="string", nullable=true)
+     */
+    private $precioFobExportacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="precio_fca_exportacion", type="string", nullable=true)
+     */
+    private $precioFcaExportacion;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="costo_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var \MIPP\CoexinBundle\Entity\Producto
+     *
+     * @ORM\ManyToOne(targetEntity="MIPP\CoexinBundle\Entity\Producto")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_producto", referencedColumnName="id")
+     * })
+     */
+    private $idProducto;
+
+
+}

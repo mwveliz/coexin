@@ -1,0 +1,193 @@
+<?php
+
+namespace MIPP\CoexinBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Empresa
+ *
+ * @ORM\Table(name="empresa", indexes={@ORM\Index(name="IDX_B8D75A508F781FEB", columns={"id_persona"}), @ORM\Index(name="IDX_B8D75A5088EF0E82", columns={"id_tipo_empresa"})})
+ * @ORM\Entity
+ */
+class Empresa
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rif", type="string", nullable=true)
+     */
+    private $rif;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="string", nullable=true)
+     */
+    private $descripcion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion_admin", type="text", nullable=true)
+     */
+    private $direccionAdmin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="codigo_area", type="string", nullable=true)
+     */
+    private $codigoArea;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telf1", type="string", nullable=true)
+     */
+    private $telf1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telf2", type="string", nullable=true)
+     */
+    private $telf2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telf3", type="string", nullable=true)
+     */
+    private $telf3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cod_postal_admin", type="string", nullable=true)
+     */
+    private $codPostalAdmin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fax_admin", type="string", nullable=true)
+     */
+    private $faxAdmin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="website", type="string", nullable=true)
+     */
+    private $website;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion_planta", type="string", nullable=true)
+     */
+    private $direccionPlanta;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cod_postal_planta", type="string", nullable=true)
+     */
+    private $codPostalPlanta;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telf4", type="string", nullable=true)
+     */
+    private $telf4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telf5", type="string", nullable=true)
+     */
+    private $telf5;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telf6", type="string", nullable=true)
+     */
+    private $telf6;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fax_planta", type="string", nullable=true)
+     */
+    private $faxPlanta;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_registro", type="date", nullable=true)
+     */
+    private $fechaRegistro;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=true)
+     */
+    private $isActive;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="comercializador", type="boolean", nullable=true)
+     */
+    private $comercializador;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="productor", type="boolean", nullable=true)
+     */
+    private $productor;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="empresa_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var \MIPP\CoexinBundle\Entity\Persona
+     *
+     * @ORM\ManyToOne(targetEntity="MIPP\CoexinBundle\Entity\Persona")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_persona", referencedColumnName="id")
+     * })
+     */
+    private $idPersona;
+
+    /**
+     * @var \MIPP\CoexinBundle\Entity\TipoEmpresa
+     *
+     * @ORM\ManyToOne(targetEntity="MIPP\CoexinBundle\Entity\TipoEmpresa")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_tipo_empresa", referencedColumnName="id")
+     * })
+     */
+    private $idTipoEmpresa;
+
+
+}

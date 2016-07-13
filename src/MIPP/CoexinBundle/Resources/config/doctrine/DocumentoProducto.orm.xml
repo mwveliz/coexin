@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="MIPP\CoexinBundle\Entity\DocumentoProducto" table="documento_producto">
+    <indexes>
+      <index name="IDX_F3B0E9ECF760EA80" columns="id_producto"/>
+      <index name="IDX_F3B0E9EC69B92C8F" columns="id_tipo_documento"/>
+    </indexes>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="descripcion" type="string" column="descripcion" nullable="true"/>
+    <field name="ruta" type="string" column="ruta" nullable="true"/>
+    <field name="fecha" type="date" column="fecha" nullable="true"/>
+    <many-to-one field="idProducto" target-entity="Producto">
+      <join-columns>
+        <join-column name="id_producto" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idTipoDocumento" target-entity="TipoDocumento">
+      <join-columns>
+        <join-column name="id_tipo_documento" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

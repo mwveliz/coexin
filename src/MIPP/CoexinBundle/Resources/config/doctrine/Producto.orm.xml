@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="MIPP\CoexinBundle\Entity\Producto" table="producto">
+    <indexes>
+      <index name="IDX_A7BB0615E5B499E9" columns="id_codigo_arancelario"/>
+      <index name="IDX_A7BB061517E2BDF1" columns="id_codigo_ncm"/>
+      <index name="IDX_A7BB0615963C9EC0" columns="id_moneda"/>
+    </indexes>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="denominacionComercial" type="string" column="denominacion_comercial" nullable="true"/>
+    <field name="unidadMedida" type="string" column="unidad_medida" nullable="true"/>
+    <field name="procesoProductivoLiteral" type="text" column="proceso_productivo_literal" nullable="true"/>
+    <field name="isActive" type="boolean" column="is_active" nullable="true"/>
+    <many-to-one field="idCodigoArancelario" target-entity="CodigoArancelario">
+      <join-columns>
+        <join-column name="id_codigo_arancelario" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idCodigoNcm" target-entity="CodigoNcm">
+      <join-columns>
+        <join-column name="id_codigo_ncm" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idMoneda" target-entity="Moneda">
+      <join-columns>
+        <join-column name="id_moneda" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

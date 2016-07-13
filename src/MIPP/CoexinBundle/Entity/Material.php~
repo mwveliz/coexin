@@ -1,0 +1,78 @@
+<?php
+
+namespace MIPP\CoexinBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Material
+ *
+ * @ORM\Table(name="material", indexes={@ORM\Index(name="IDX_7CBE7595E5B499E9", columns={"id_codigo_arancelario"})})
+ * @ORM\Entity
+ */
+class Material
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="string", nullable=true)
+     */
+    private $descripcion;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="material_nacional", type="boolean", nullable=true)
+     */
+    private $materialNacional;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="incidencia_sobre_costo", type="string", nullable=true)
+     */
+    private $incidenciaSobreCosto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre_productor", type="string", nullable=true)
+     */
+    private $nombreProductor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre_proveedor", type="string", nullable=true)
+     */
+    private $nombreProveedor;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=true)
+     */
+    private $isActive;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="material_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var \MIPP\CoexinBundle\Entity\CodigoArancelario
+     *
+     * @ORM\ManyToOne(targetEntity="MIPP\CoexinBundle\Entity\CodigoArancelario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_codigo_arancelario", referencedColumnName="id")
+     * })
+     */
+    private $idCodigoArancelario;
+
+
+}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Registro</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Fecha</th>
+                <td>{% if registro.fecha %}{{ registro.fecha|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Codigoregistro</th>
+                <td>{{ registro.codigoRegistro }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ registro.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('registro_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('registro_edit', { 'id': registro.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

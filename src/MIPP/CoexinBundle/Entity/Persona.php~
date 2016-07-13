@@ -1,0 +1,110 @@
+<?php
+
+namespace MIPP\CoexinBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Persona
+ *
+ * @ORM\Table(name="persona")
+ * @ORM\Entity
+ */
+class Persona
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cedula", type="string", nullable=true)
+     */
+    private $cedula;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nac_cedula", type="string", nullable=true)
+     */
+    private $nacCedula;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cargo", type="string", nullable=true)
+     */
+    private $cargo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cod_area", type="string", nullable=true)
+     */
+    private $codArea;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telf1", type="string", nullable=true)
+     */
+    private $telf1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telf2", type="string", nullable=true)
+     */
+    private $telf2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telf3", type="string", nullable=true)
+     */
+    private $telf3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fax", type="string", nullable=true)
+     */
+    private $fax;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lugar_residencia", type="string", nullable=true)
+     */
+    private $lugarResidencia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="numeros_destino", type="string", nullable=true)
+     */
+    private $numerosDestino;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=true)
+     */
+    private $isActive;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="persona_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+
+}

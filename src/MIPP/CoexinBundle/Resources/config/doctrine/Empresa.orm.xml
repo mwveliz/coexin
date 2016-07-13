@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="MIPP\CoexinBundle\Entity\Empresa" table="empresa">
+    <indexes>
+      <index name="IDX_B8D75A508F781FEB" columns="id_persona"/>
+      <index name="IDX_B8D75A5088EF0E82" columns="id_tipo_empresa"/>
+    </indexes>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="rif" type="string" column="rif" nullable="true"/>
+    <field name="descripcion" type="string" column="descripcion" nullable="true"/>
+    <field name="direccionAdmin" type="text" column="direccion_admin" nullable="true"/>
+    <field name="codigoArea" type="string" column="codigo_area" nullable="true"/>
+    <field name="telf1" type="string" column="telf1" nullable="true"/>
+    <field name="telf2" type="string" column="telf2" nullable="true"/>
+    <field name="telf3" type="string" column="telf3" nullable="true"/>
+    <field name="codPostalAdmin" type="string" column="cod_postal_admin" nullable="true"/>
+    <field name="faxAdmin" type="string" column="fax_admin" nullable="true"/>
+    <field name="website" type="string" column="website" nullable="true"/>
+    <field name="email" type="string" column="email" nullable="true"/>
+    <field name="direccionPlanta" type="string" column="direccion_planta" nullable="true"/>
+    <field name="codPostalPlanta" type="string" column="cod_postal_planta" nullable="true"/>
+    <field name="telf4" type="string" column="telf4" nullable="true"/>
+    <field name="telf5" type="string" column="telf5" nullable="true"/>
+    <field name="telf6" type="string" column="telf6" nullable="true"/>
+    <field name="faxPlanta" type="string" column="fax_planta" nullable="true"/>
+    <field name="fechaRegistro" type="date" column="fecha_registro" nullable="true"/>
+    <field name="isActive" type="boolean" column="is_active" nullable="true"/>
+    <field name="comercializador" type="boolean" column="comercializador" nullable="true"/>
+    <field name="productor" type="boolean" column="productor" nullable="true"/>
+    <many-to-one field="idPersona" target-entity="Persona">
+      <join-columns>
+        <join-column name="id_persona" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idTipoEmpresa" target-entity="TipoEmpresa">
+      <join-columns>
+        <join-column name="id_tipo_empresa" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

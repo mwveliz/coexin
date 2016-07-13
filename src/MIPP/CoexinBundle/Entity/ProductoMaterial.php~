@@ -1,0 +1,56 @@
+<?php
+
+namespace MIPP\CoexinBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ProductoMaterial
+ *
+ * @ORM\Table(name="producto_material", indexes={@ORM\Index(name="IDX_542D04402C659900", columns={"id_material"}), @ORM\Index(name="IDX_542D0440F57D32FD", columns={"id_pais"}), @ORM\Index(name="IDX_542D0440F760EA80", columns={"id_producto"})})
+ * @ORM\Entity
+ */
+class ProductoMaterial
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="producto_material_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var \MIPP\CoexinBundle\Entity\Material
+     *
+     * @ORM\ManyToOne(targetEntity="MIPP\CoexinBundle\Entity\Material")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_material", referencedColumnName="id")
+     * })
+     */
+    private $idMaterial;
+
+    /**
+     * @var \MIPP\CoexinBundle\Entity\Pais
+     *
+     * @ORM\ManyToOne(targetEntity="MIPP\CoexinBundle\Entity\Pais")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_pais", referencedColumnName="id")
+     * })
+     */
+    private $idPais;
+
+    /**
+     * @var \MIPP\CoexinBundle\Entity\Producto
+     *
+     * @ORM\ManyToOne(targetEntity="MIPP\CoexinBundle\Entity\Producto")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_producto", referencedColumnName="id")
+     * })
+     */
+    private $idProducto;
+
+
+}

@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Empresa</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Rif</th>
+                <td>{{ empresa.rif }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ empresa.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Direccionadmin</th>
+                <td>{{ empresa.direccionAdmin }}</td>
+            </tr>
+            <tr>
+                <th>Codigoarea</th>
+                <td>{{ empresa.codigoArea }}</td>
+            </tr>
+            <tr>
+                <th>Telf1</th>
+                <td>{{ empresa.telf1 }}</td>
+            </tr>
+            <tr>
+                <th>Telf2</th>
+                <td>{{ empresa.telf2 }}</td>
+            </tr>
+            <tr>
+                <th>Telf3</th>
+                <td>{{ empresa.telf3 }}</td>
+            </tr>
+            <tr>
+                <th>Codpostaladmin</th>
+                <td>{{ empresa.codPostalAdmin }}</td>
+            </tr>
+            <tr>
+                <th>Faxadmin</th>
+                <td>{{ empresa.faxAdmin }}</td>
+            </tr>
+            <tr>
+                <th>Website</th>
+                <td>{{ empresa.website }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ empresa.email }}</td>
+            </tr>
+            <tr>
+                <th>Direccionplanta</th>
+                <td>{{ empresa.direccionPlanta }}</td>
+            </tr>
+            <tr>
+                <th>Codpostalplanta</th>
+                <td>{{ empresa.codPostalPlanta }}</td>
+            </tr>
+            <tr>
+                <th>Telf4</th>
+                <td>{{ empresa.telf4 }}</td>
+            </tr>
+            <tr>
+                <th>Telf5</th>
+                <td>{{ empresa.telf5 }}</td>
+            </tr>
+            <tr>
+                <th>Telf6</th>
+                <td>{{ empresa.telf6 }}</td>
+            </tr>
+            <tr>
+                <th>Faxplanta</th>
+                <td>{{ empresa.faxPlanta }}</td>
+            </tr>
+            <tr>
+                <th>Fecharegistro</th>
+                <td>{% if empresa.fechaRegistro %}{{ empresa.fechaRegistro|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Isactive</th>
+                <td>{% if empresa.isActive %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Comercializador</th>
+                <td>{% if empresa.comercializador %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Productor</th>
+                <td>{% if empresa.productor %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ empresa.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('empresa_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('empresa_edit', { 'id': empresa.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

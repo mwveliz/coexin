@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>CodigoNcm list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Descripcion</th>
+                <th>Fecha</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for codigoNcm in codigoNcms %}
+            <tr>
+                <td><a href="{{ path('codigoncm_show', { 'id': codigoNcm.id }) }}">{{ codigoNcm.descripcion }}</a></td>
+                <td>{% if codigoNcm.fecha %}{{ codigoNcm.fecha|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ codigoNcm.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('codigoncm_show', { 'id': codigoNcm.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('codigoncm_edit', { 'id': codigoNcm.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('codigoncm_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

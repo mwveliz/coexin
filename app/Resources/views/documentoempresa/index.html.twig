@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DocumentoEmpresa list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Descripcion</th>
+                <th>Ruta</th>
+                <th>Fecha</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for documentoEmpresa in documentoEmpresas %}
+            <tr>
+                <td><a href="{{ path('documentoempresa_show', { 'id': documentoEmpresa.id }) }}">{{ documentoEmpresa.descripcion }}</a></td>
+                <td>{{ documentoEmpresa.ruta }}</td>
+                <td>{% if documentoEmpresa.fecha %}{{ documentoEmpresa.fecha|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ documentoEmpresa.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('documentoempresa_show', { 'id': documentoEmpresa.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('documentoempresa_edit', { 'id': documentoEmpresa.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('documentoempresa_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

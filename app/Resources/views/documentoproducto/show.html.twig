@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DocumentoProducto</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ documentoProducto.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Ruta</th>
+                <td>{{ documentoProducto.ruta }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{% if documentoProducto.fecha %}{{ documentoProducto.fecha|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ documentoProducto.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('documentoproducto_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('documentoproducto_edit', { 'id': documentoProducto.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

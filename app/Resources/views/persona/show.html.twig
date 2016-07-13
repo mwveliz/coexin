@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Persona</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Cedula</th>
+                <td>{{ persona.cedula }}</td>
+            </tr>
+            <tr>
+                <th>Naccedula</th>
+                <td>{{ persona.nacCedula }}</td>
+            </tr>
+            <tr>
+                <th>Cargo</th>
+                <td>{{ persona.cargo }}</td>
+            </tr>
+            <tr>
+                <th>Codarea</th>
+                <td>{{ persona.codArea }}</td>
+            </tr>
+            <tr>
+                <th>Telf1</th>
+                <td>{{ persona.telf1 }}</td>
+            </tr>
+            <tr>
+                <th>Telf2</th>
+                <td>{{ persona.telf2 }}</td>
+            </tr>
+            <tr>
+                <th>Telf3</th>
+                <td>{{ persona.telf3 }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ persona.fax }}</td>
+            </tr>
+            <tr>
+                <th>Lugarresidencia</th>
+                <td>{{ persona.lugarResidencia }}</td>
+            </tr>
+            <tr>
+                <th>Numerosdestino</th>
+                <td>{{ persona.numerosDestino }}</td>
+            </tr>
+            <tr>
+                <th>Isactive</th>
+                <td>{% if persona.isActive %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ persona.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('persona_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('persona_edit', { 'id': persona.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

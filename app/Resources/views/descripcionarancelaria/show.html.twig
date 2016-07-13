@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DescripcionArancelaria</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ descripcionArancelarium.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{% if descripcionArancelarium.fecha %}{{ descripcionArancelarium.fecha|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ descripcionArancelarium.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('descripcionarancelaria_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('descripcionarancelaria_edit', { 'id': descripcionArancelarium.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

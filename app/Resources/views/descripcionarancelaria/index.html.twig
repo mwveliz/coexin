@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DescripcionArancelaria list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Descripcion</th>
+                <th>Fecha</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for descripcionArancelarium in descripcionArancelarias %}
+            <tr>
+                <td><a href="{{ path('descripcionarancelaria_show', { 'id': descripcionArancelarium.id }) }}">{{ descripcionArancelarium.descripcion }}</a></td>
+                <td>{% if descripcionArancelarium.fecha %}{{ descripcionArancelarium.fecha|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ descripcionArancelarium.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('descripcionarancelaria_show', { 'id': descripcionArancelarium.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('descripcionarancelaria_edit', { 'id': descripcionArancelarium.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('descripcionarancelaria_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

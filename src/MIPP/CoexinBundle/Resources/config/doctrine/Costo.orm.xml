@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="MIPP\CoexinBundle\Entity\Costo" table="costo">
+    <indexes>
+      <index name="IDX_BB1C0BE7F760EA80" columns="id_producto"/>
+    </indexes>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="materialImportado" type="string" column="material_importado" nullable="true"/>
+    <field name="materialNacional" type="string" column="material_nacional" nullable="true"/>
+    <field name="manoObra" type="string" column="mano_obra" nullable="true"/>
+    <field name="depreciacion" type="string" column="depreciacion" nullable="true"/>
+    <field name="otroCostoDirecto" type="string" column="otro_costo_directo" nullable="true"/>
+    <field name="gastoAdmim" type="string" column="gasto_admim" nullable="true"/>
+    <field name="gastoPublicidad" type="string" column="gasto_publicidad" nullable="true"/>
+    <field name="gastoVenta" type="string" column="gasto_venta" nullable="true"/>
+    <field name="otroGastoIndirecto" type="string" column="otro_gasto_indirecto" nullable="true"/>
+    <field name="utilidad" type="string" column="utilidad" nullable="true"/>
+    <field name="precioPuertaFabrica" type="string" column="precio_puerta_fabrica" nullable="true"/>
+    <field name="fleteInterno" type="string" column="flete_interno" nullable="true"/>
+    <field name="precioFobExportacion" type="string" column="precio_fob_exportacion" nullable="true"/>
+    <field name="precioFcaExportacion" type="string" column="precio_fca_exportacion" nullable="true"/>
+    <many-to-one field="idProducto" target-entity="Producto">
+      <join-columns>
+        <join-column name="id_producto" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

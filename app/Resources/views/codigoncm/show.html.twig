@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>CodigoNcm</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ codigoNcm.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{% if codigoNcm.fecha %}{{ codigoNcm.fecha|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ codigoNcm.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('codigoncm_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('codigoncm_edit', { 'id': codigoNcm.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

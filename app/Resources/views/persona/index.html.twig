@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Persona list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Cedula</th>
+                <th>Naccedula</th>
+                <th>Cargo</th>
+                <th>Codarea</th>
+                <th>Telf1</th>
+                <th>Telf2</th>
+                <th>Telf3</th>
+                <th>Fax</th>
+                <th>Lugarresidencia</th>
+                <th>Numerosdestino</th>
+                <th>Isactive</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for persona in personas %}
+            <tr>
+                <td><a href="{{ path('persona_show', { 'id': persona.id }) }}">{{ persona.cedula }}</a></td>
+                <td>{{ persona.nacCedula }}</td>
+                <td>{{ persona.cargo }}</td>
+                <td>{{ persona.codArea }}</td>
+                <td>{{ persona.telf1 }}</td>
+                <td>{{ persona.telf2 }}</td>
+                <td>{{ persona.telf3 }}</td>
+                <td>{{ persona.fax }}</td>
+                <td>{{ persona.lugarResidencia }}</td>
+                <td>{{ persona.numerosDestino }}</td>
+                <td>{% if persona.isActive %}Yes{% else %}No{% endif %}</td>
+                <td>{{ persona.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('persona_show', { 'id': persona.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('persona_edit', { 'id': persona.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('persona_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

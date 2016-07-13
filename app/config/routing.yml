@@ -1,0 +1,86 @@
+coexin_codigo_arancelario:
+    resource: "@CoexinBundle/Controller/CodigoArancelarioController.php"
+    type:     annotation
+
+coexin_producto_empresa:
+    resource: "@CoexinBundle/Controller/ProductoEmpresaController.php"
+    type:     annotation
+
+coexin_tipo_empresa:
+    resource: "@CoexinBundle/Controller/TipoEmpresaController.php"
+    type:     annotation
+
+coexin_codigo_ncm:
+    resource: "@CoexinBundle/Controller/CodigoNcmController.php"
+    type:     annotation
+
+coexin_documento_empresa:
+    resource: "@CoexinBundle/Controller/DocumentoEmpresaController.php"
+    type:     annotation
+
+coexin_producto:
+    resource: "@CoexinBundle/Controller/ProductoController.php"
+    type:     annotation
+
+coexin_empresa:
+    resource: "@CoexinBundle/Controller/EmpresaController.php"
+    type:     annotation
+
+coexin_documento_producto:
+    resource: "@CoexinBundle/Controller/DocumentoProductoController.php"
+    type:     annotation
+
+coexin_tipo_documento:
+    resource: "@CoexinBundle/Controller/TipoDocumentoController.php"
+    type:     annotation
+
+coexin_descripcion_arancelaria:
+    resource: "@CoexinBundle/Controller/DescripcionArancelariaController.php"
+    type:     annotation
+
+coexin_costo:
+    resource: "@CoexinBundle/Controller/CostoController.php"
+    type:     annotation
+
+coexin_pais:
+    resource: "@CoexinBundle/Controller/PaisController.php"
+    type:     annotation
+
+coexin_producto_material:
+    resource: "@CoexinBundle/Controller/ProductoMaterialController.php"
+    type:     annotation
+
+coexin_material:
+    resource: "@CoexinBundle/Controller/MaterialController.php"
+    type:     annotation
+
+coexin_moneda:
+    resource: "@CoexinBundle/Controller/MonedaController.php"
+    type:     annotation
+
+coexin_registro_pais:
+    resource: "@CoexinBundle/Controller/RegistroPaisController.php"
+    type:     annotation
+
+coexin_persona:
+    resource: "@CoexinBundle/Controller/PersonaController.php"
+    type:     annotation
+
+coexin_registro:
+    resource: "@CoexinBundle/Controller/RegistroController.php"
+    type:     annotation
+
+coexin:
+    resource: "@CoexinBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+    
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"    
+
+homepage:
+    pattern:     /
+    defaults: { _controller: CoexinBundle:Registro:index }

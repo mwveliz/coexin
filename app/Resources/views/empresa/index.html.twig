@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Empresa list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Rif</th>
+                <th>Descripcion</th>
+                <th>Direccionadmin</th>
+                <th>Codigoarea</th>
+                <th>Telf1</th>
+                <th>Telf2</th>
+                <th>Telf3</th>
+                <th>Codpostaladmin</th>
+                <th>Faxadmin</th>
+                <th>Website</th>
+                <th>Email</th>
+                <th>Direccionplanta</th>
+                <th>Codpostalplanta</th>
+                <th>Telf4</th>
+                <th>Telf5</th>
+                <th>Telf6</th>
+                <th>Faxplanta</th>
+                <th>Fecharegistro</th>
+                <th>Isactive</th>
+                <th>Comercializador</th>
+                <th>Productor</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for empresa in empresas %}
+            <tr>
+                <td><a href="{{ path('empresa_show', { 'id': empresa.id }) }}">{{ empresa.rif }}</a></td>
+                <td>{{ empresa.descripcion }}</td>
+                <td>{{ empresa.direccionAdmin }}</td>
+                <td>{{ empresa.codigoArea }}</td>
+                <td>{{ empresa.telf1 }}</td>
+                <td>{{ empresa.telf2 }}</td>
+                <td>{{ empresa.telf3 }}</td>
+                <td>{{ empresa.codPostalAdmin }}</td>
+                <td>{{ empresa.faxAdmin }}</td>
+                <td>{{ empresa.website }}</td>
+                <td>{{ empresa.email }}</td>
+                <td>{{ empresa.direccionPlanta }}</td>
+                <td>{{ empresa.codPostalPlanta }}</td>
+                <td>{{ empresa.telf4 }}</td>
+                <td>{{ empresa.telf5 }}</td>
+                <td>{{ empresa.telf6 }}</td>
+                <td>{{ empresa.faxPlanta }}</td>
+                <td>{% if empresa.fechaRegistro %}{{ empresa.fechaRegistro|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if empresa.isActive %}Yes{% else %}No{% endif %}</td>
+                <td>{% if empresa.comercializador %}Yes{% else %}No{% endif %}</td>
+                <td>{% if empresa.productor %}Yes{% else %}No{% endif %}</td>
+                <td>{{ empresa.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('empresa_show', { 'id': empresa.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('empresa_edit', { 'id': empresa.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('empresa_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
