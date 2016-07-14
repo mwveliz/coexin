@@ -1,0 +1,238 @@
+<div class="page-header">
+      <h1 id="validator">Declaración Jurada de Origen <small>Perfil del Producto</small></h1>
+    </div>
+
+    <h2 id="validator-examples">Estructura de Costos del Producto a Exportar</h2>
+    <p>P-3</p>
+    
+    <div class="well">
+
+	<div class="row">
+      <form data-toggle="validator" role="form">
+        <div class="form-group col-md-4">
+          <label class="control-label" for="remoteValidator">Denominación Comercial del Producto a Exportar</label>
+          <input type="text" placeholder="Ingrese nombre comercial del producto" name="estructura_nombre" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el nombre comercial del producto</div>
+        </div>
+        <div class="form-group col-md-4">
+          <label class="control-label" for="remoteValidator">Unidad de Medida</label>
+          <input type="number" placeholder="Ingrese unidad de medida" name="estructura_unidad" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique la unidad de medida del producto</div>
+        </div>
+		<div class="form-group col-md-4">
+          <label class="control-label" for="remoteValidator">Tipo de Moneda</label>
+          <input type="number" placeholder="Ingrese tipo de Moneda" name="estructura_moneda" value="Bs." id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique la descripción</div>
+        </div>			
+	</div>
+
+
+
+ <div class="row">
+	 	<div class="col-md-3">
+		</div>
+			<div class="col-md-5">
+		<div class="table-responsive">
+		<table id="directos" class="table table-hover">
+			   <thead>
+				<tr>
+				<th>Costos Directos</th>
+				<th>Total costos</th>
+				</tr>
+				<tbody>
+				<tr>
+				<td>Materiales Importados</td>
+				<td id="materiales_importados"><input type="text" readonly></td>
+				</tr>
+				<tr>
+				<td>Materiales Nacionales</td>
+				<td id="materiales_nacionales"><input type="text" readonly></td>
+				</tr>
+				<tr>
+				<td>Mano de obra</td>
+				<td id="mano_obra"><input type="number"></td>
+				</tr>
+				<tr>
+				<td>Depreciación</td>
+				<td id="depreciación"><input type="number"></td>
+				</tr>	
+				<tr>
+				<td>Otros Costos Directos</td>
+				<td id="otros_directos"><input type="number"></td>
+				</tr>	
+				<tr>
+				<td>Total</td>
+				<td id="total_directos"> <input type="text" readonly></td>
+				</tr>
+					
+				</tbody>
+				
+		</thead>
+    <tbody>
+		</table>
+	</div>
+	</div>	
+	
+	
+</div>
+
+
+<div class="row">
+	 	<div class="col-md-3">
+		</div>
+			<div class="col-md-5">
+		<div class="table-responsive">
+		<table id="indirectos" class="table table-hover">
+			   <thead>
+				<tr>
+				<th>Costos Indirectos</th>
+				<th>Total costos</th>
+				</tr>
+				<tbody>
+				<tr>
+				<td>Gastos Administrativos</td>
+				<td id="gastos_admin"><input type="number"></td>
+				</tr>
+				<tr>
+				<td>Gastos de Publicidad</td>
+				<td id="gastos_publicidad"><input type="number"></td>
+				</tr>	
+				<tr>
+				<td>Gastos de Ventas</td>
+				<td id="gastos_ventas"><input type="number"></td>
+				</tr>	
+				<tr><tr>
+				<td>Otros Gastos Indirectos</td>
+				<td id="otros_indirectos"><input type="number"></td>
+				</tr>	
+				<tr>
+				<td>Total</td>
+				<td id="total_indirectos"> <input type="text" readonly></td>
+				</tr>
+					
+				</tbody>
+				
+		</thead>
+    <tbody>
+		</table>
+	</div>
+	</div>	
+	
+	
+</div>
+
+
+
+<div class="row">
+	 	<div class="col-md-3">
+		</div>
+		<div class="col-md-5">
+		<div class="table-responsive">
+		<table id="utilidad" class="table table-hover">
+				<tbody>
+				<tr>
+				<td>Utilidad</td>
+				<td id="utilidad"><input type="number"></td>
+				</tr>
+				</tbody>
+		</table>
+		</div>
+		</div>	
+</div>
+
+<div class="row">
+	 	<div class="col-md-3">
+		</div>
+		<div class="col-md-5">
+		<div class="table-responsive">
+		<table id="puerta" class="table table-hover">
+				<tbody>
+				<tr>
+				<td>Precio a puerta de fábrica</td>
+				<td id="precio_puerta"><input type="number"></td>
+				</tr>
+				</tbody>
+		</table>
+		</div>
+		</div>	
+</div>
+
+<div class="row">
+	 	<div class="col-md-3">
+		</div>
+		<div class="col-md-5">
+		<div class="table-responsive">
+		<table id="flete" class="table table-hover">
+				<tbody>
+				<tr>
+				<td>Flete Interno</td>
+				<td id="flete"><input type="number"></td>
+				</tr>
+				</tbody>
+		</table>
+		</div>
+		</div>	
+</div>
+
+
+<div class="row">
+	 	<div class="col-md-3">
+		</div>
+		<div class="col-md-5">
+		<div class="table-responsive">
+		<table id="precio_total" class="table table-hover">
+				<tbody>
+				<tr>
+				<td>Precio FOB de Exportación</td>
+				<td id="precio_total"><input type="number"></td>
+				</tr>
+				</tbody>
+		</table>
+		</div>
+		</div>	
+</div>
+
+
+		
+		
+		
+  <div class="row">
+  <div class="form-group col-md-10">
+          <button type="submit" id="4" class="btn btn-primary">Atrás</button>
+        </div>
+
+        <div class="form-group col-md-2">
+          <button type="submit" id="6" class="btn btn-primary">Siguiente</button>
+        </div>
+           
+           
+      </form>
+    </div>
+    
+  
+    
+    
+    
+    
+    
+    
+ <script>
+	 
+	  
+	 
+    $("button").click(function(e){
+		var pagina=$(this).attr("id");
+		$("div.bs-docs-section").empty();
+                e.preventDefault();
+		if(pagina==4){
+                    $("div.bs-docs-section").load("{{path('cuatro')}}");
+                }else{
+                    $("div.bs-docs-section").load("{{path('seis')}}");
+                }
+
+		 });
+		 
+		 
+	
+		 
+</script>

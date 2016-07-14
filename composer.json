@@ -20,7 +20,11 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "braincrafted/bootstrap-bundle": "^2.2",
         "jms/serializer-bundle": "^1.1",
-        "knplabs/knp-menu-bundle": "^2.0"
+        "knplabs/knp-menu-bundle": "^2.0",
+        "symfony/assetic-bundle": "^2.8",
+        "twbs/bootstrap": "3.0.*",
+        "oyejorge/less.php": "~1.5",
+        "jquery/jquery":  "2.2.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
@@ -60,23 +64,19 @@
         "branch-alias": {
             "dev-master": "2.8-dev"
         }
-    }
+    },
     "repositories": [
         {
             "type": "package",
             "package": {
                 "name": "jquery/jquery",
-                "version": "1.11.1",
+                "version": "2.2.4",
                 "dist": {
-                    "url": "https://code.jquery.com/jquery-1.11.1.js",
+                    "url": "https://code.jquery.com/jquery-2.2.4.js",
                     "type": "file"
                 }
             }
         }
-    ],
-    "require": {
-        
-        "twbs/bootstrap": "3.0.*",
-        "jquery/jquery":  "1.11.*"
-    }
+    ]
+  
 }

@@ -1,0 +1,251 @@
+<div class="page-header">
+      <h1 id="validator">Declaración Jurada de Origen <small>Perfil del Producto</small></h1>
+    </div>
+
+    <h2 id="validator-examples">Datos Generales del Producto a Exportar</h2>
+    <p>P-2</p>
+    
+    <div class="well">
+
+	<div class="row">
+      <form data-toggle="validator" role="form">
+
+        <div class="form-group col-md-6">
+          <label class="control-label" for="remoteValidator">Denominación Comercial</label>
+          <input type="text" placeholder="Ingrese nombre comercial del producto" name="producto_nombre" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el nombre comercial del producto</div>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="control-label" for="remoteValidator">Descripción Arancelaria</label>
+          <input type="number" placeholder="Ingrese descripción arancelaria" name="producto_descripcion" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique la descripción</div>
+        </div>
+			
+
+
+	</div>
+	
+
+  <div class="row">
+	
+		<div class="col-md-4">
+		  <label class="control-label" for="remoteValidator">Código Arancelario NCM 212</label>
+          <input type="number" placeholder="Ingrese descripción arancelaria" name="producto_ncm212" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el código Arancelario</div>
+       
+		</div>	
+		<div class="col-md-8">
+			<label class="control-label" for="remoteValidator">Unidad de medida, uso y aplicación</label>
+          <input type="number" placeholder="Ingrese descripción arancelaria" name="producto_unidad" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique la unidad de medida, uso y aplicación</div>
+		
+		</div>
+		
+	</div>			
+		<br>
+		<br>
+		<br>
+	<div class="row">
+ 		<div class="col-md-12">
+			<h1> <small>Materiales que intervienen en la realización del producto</small></h1>
+		</div>
+	</div>	
+
+<div class="row">
+		
+		<div class="col-md-4">
+		  <label class="control-label" for="remoteValidator">Material Importado</label>
+          <input type="text" placeholder="Ingrese descripción del material" name="material_importado" id="remoteValidator" class="form-control fila_importado" data-remote="/validate">
+           <div class="help-block with-errors">Verifique material</div>
+       
+		</div>	
+		<div class="col-md-2">
+			<label class="control-label" for="remoteValidator">Código Arancelario</label>
+          <input type="text" placeholder="Ingrese código" name="material_importado_codigo" id="remoteValidator" class="form-control fila_importado" data-remote="/validate">
+           <div class="help-block with-errors">Verifique código</div>
+		</div>
+		<div class="col-md-2">
+		  <label class="control-label" for="remoteValidator">País de Origen</label>
+          <input type="text" placeholder="Ingrese descripción del material" name="material_importado_pais" id="remoteValidator" class="form-control fila_importado" data-remote="/validate">
+           <div class="help-block with-errors">Verifique País</div>
+       
+		</div>	
+		<div class="col-md-2">
+			<label class="control-label" for="remoteValidator">Incidencia </label>
+          <input type="number" placeholder="Ingrese incidencia sobre costo" name="material_importado_indidencia" id="remoteValidator" class="form-control fila_importado" data-remote="/validate">
+           <div class="help-block with-errors">Verifique monto</div>
+		</div>
+		
+		<div class="col-md-2">
+			<label class="control-label" for="remoteValidator"> </label>
+			<a id="agrega_importado"><span style="padding-top:25px; font-size: 30px; cursor: pointer;" data-toggle="tooltip" title="Agregar" class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+		 </div>
+		
+</div>	
+
+ <div class="row">
+		<div class="table-responsive">
+		<table id="importado" class="table table-hover ">
+			   <thead>
+				<tr>
+				<th>Material</th>
+				<th>Código</th>
+				<th>País</th>
+				<th>Incidencia</th>
+				<th>Borrar</th>
+				</tr>
+				<tbody>
+					
+				</tbody>
+				
+		</thead>
+    <tbody>
+		</table>
+	</div>
+</div>
+
+<!-----MATERIALES NACIONALES ---->
+
+
+<div class="row">
+		
+		<div class="col-md-4">
+		  <label class="control-label" for="remoteValidator">Material Nacional</label>
+          <input type="text" placeholder="Ingrese descripción del material" name="material_nacional" id="remoteValidator" class="form-control fila_nacional" data-remote="/validate">
+           <div class="help-block with-errors">Verifique material</div>
+       
+		</div>	
+		<div class="col-md-2">
+			<label class="control-label" for="remoteValidator">Código Arancelario</label>
+          <input type="text" placeholder="Ingrese código" name="material_importado_codigo" id="remoteValidator" class="form-control fila_nacional" data-remote="/validate">
+           <div class="help-block with-errors">Verifique código</div>
+		</div>
+		<div class="col-md-2">
+		  <label class="control-label" for="remoteValidator">Productor Nacional</label>
+          <input type="text" placeholder="Ingrese descripción del material" name="material_nacional_productor" id="remoteValidator" class="form-control fila_nacional" data-remote="/validate">
+           <div class="help-block with-errors">Verifique País</div>
+       </div>
+ </div>
+             
+ <div class="row">
+	<div class="col-md-4">
+		  <label class="control-label" for="remoteValidator">Proveedor</label>
+          <input type="text" placeholder="Ingrese descripción del material" name="material_nacional_proveedor" id="remoteValidator" class="form-control fila_nacional" data-remote="/validate">
+           <div class="help-block with-errors">Verifique País</div>
+       </div>		
+		<div class="col-md-4">
+			<label class="control-label" for="remoteValidator">Incidencia sobre el costo</label>
+          <input type="number" placeholder="Ingrese incidencia sobre costo" name="material_nacional_indidencia" id="remoteValidator" class="form-control fila_nacional" data-remote="/validate">
+           <div class="help-block with-errors">Verifique monto</div>
+		</div>
+		
+		<div class="col-md-2">
+			<label class="control-label" for="remoteValidator"> </label>
+			<a id="agrega_nacional"><span style="padding-top:25px; font-size: 30px; cursor: pointer;" data-toggle="tooltip" title="Agregar" class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+		 </div>
+		
+</div>	
+
+ <div class="row">
+		<div class="table-responsive">
+		<table id="nacional" class="table table-hover ">
+			   <thead>
+				<tr>
+				<th>Material</th>
+				<th>Código</th>
+				<th>Productor Nacional</th>
+				<th>Proveedor</th>
+				<th>Incidencia</th>
+				<th>Borrar</th>
+				</tr>
+				<tbody>
+					
+				</tbody>
+				
+		</thead>
+    <tbody>
+		</table>
+	</div>
+</div>
+
+		
+		
+  <div class="row">
+  <div class="form-group col-md-10">
+          <button type="submit" id="3" class="btn btn-primary">Atrás</button>
+        </div>
+
+        <div class="form-group col-md-2">
+          <button type="submit" id="5" class="btn btn-primary">Siguiente</button>
+        </div>
+           
+           
+      </form>
+    </div>
+    
+  
+    
+    
+    
+    
+    
+    
+ <script>
+	 
+	 function getRowIndex( el ) {
+    while( (el = el.parentNode) && el.nodeName.toLowerCase() !== 'tr' );
+
+    if( el ) 
+        return el.rowIndex;
+	}
+	function borra_importado(idX){
+				$("table#importado tr:eq("+idX+")").remove();
+			 }
+			 
+	function borra_nacional(idX){
+				$("table#nacional tr:eq("+idX+")").remove();
+			 }
+	 
+	 
+    $("button").click(function(e){
+		var pagina=$(this).attr("id");
+		$("div.bs-docs-section").empty();
+                e.preventDefault();
+		if(pagina==3){
+                    $("div.bs-docs-section").load("{{path('tres')}}");
+                }else{
+                    $("div.bs-docs-section").load("{{path('cinco')}}");
+                }
+
+		 });
+		 
+		 
+		 
+		 
+	/*****AGREGANDO A LA PRIMERA TABLA****/
+	$("#agrega_importado").click(function(){
+		var fila='<tr>';
+		$(".fila_importado").each(function( index ) {
+			fila=fila+'<td>'+$(this).val()+'</td>';
+		});
+		fila=fila+'<td><a><span onclick="borra_importado(getRowIndex(this))" style="font-size: 25px; cursor: pointer;" data-toggle="tooltip" title="Borrar" class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></a></td></tr>';
+		$("#importado").append(fila);
+		
+		$(".fila_importado").val("");
+		}); 
+		
+		
+		/**********AGREGANDO A LA SEGUNDA LA PRIMERA TABLA****/
+	$("#agrega_nacional").click(function(){
+		var fila='<tr>';
+		$(".fila_nacional").each(function( index ) {
+			fila=fila+'<td>'+$(this).val()+'</td>';
+		});
+		fila=fila+'<td><a><span onclick="borra_nacional(getRowIndex(this))" style="font-size: 25px; cursor: pointer;" data-toggle="tooltip" title="Borrar" class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></a></td></tr>';
+		$("#nacional").append(fila);
+		
+		$(".fila_nacional").val("");
+		}); 
+			 
+		 
+</script>

@@ -1,0 +1,68 @@
+<div class="page-header">
+      <h1 id="validator">Declaración Jurada de Origen <small>Perfil del Producto</small></h1>
+    </div>
+
+    <h2 id="validator-examples">Proceso Productivo Literal y Gráfico del Producto a Exportar</h2>
+    <p>P-4</p>
+    
+    <div class="well">
+
+	<div class="row">
+      <form data-toggle="validator" role="form">
+        <div class="form-group col-md-12">
+          <label class="control-label" for="remoteValidator">Poceso Productivo Literal del Producto a Exportar</label>
+          <textarea rows="15" placeholder="Ingrese proceso literal del producto a exportar" name="proceso_literal" id="remoteValidator" class="form-control" data-remote="/validate">
+		</textarea>	  
+           <div class="help-block with-errors">Verifique el nombre comercial del producto</div>
+      </div>
+        		
+	</div>
+
+
+
+ <div class="row">
+	 	<div class="col-md-3">
+		</div>
+          <div class="form-group col-md-4">
+          <label class="control-label" for="remoteValidator">Ingrese proceso gráfico del producto a exportar</label>
+          <input type="file" placeholder="Ingrese proceso literal del producto a exportar" name="proceso_literal" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique adjunto</div>
+           </div>
+	   </div>	
+	
+	
+
+
+<div class="row">
+  <div class="form-group col-md-10">
+          <button type="submit" id="5" class="btn btn-primary">Atrás</button>
+        </div>
+
+        <div class="form-group col-md-2">
+          <button type="submit" id="7" class="btn btn-primary">Siguiente</button>
+        </div>
+           
+           
+      </form>
+    </div>
+
+ <script>
+	 
+	  
+	 
+    $("button").click(function(e){
+		var pagina=$(this).attr("id");
+		$("div.bs-docs-section").empty();
+                e.preventDefault();
+		if(pagina==5){
+                    $("div.bs-docs-section").load("{{path('cinco')}}");
+                }else{
+                    $("div.bs-docs-section").load("{{path('siete')}}");
+                }
+
+		 });
+		 
+		 
+	
+		 
+</script>

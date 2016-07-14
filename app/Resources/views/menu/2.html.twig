@@ -1,0 +1,93 @@
+<div class="page-header">
+      <h1 id="validator">Declaración Jurada de Origen <small>Perfil del Producto</small></h1>
+    </div>
+
+    <h2 id="validator-examples">Datos del Representante Legal de la Empresa Productora</h2>
+    <p>P-1</p>
+    
+    <div class="well">
+
+	<div class="row">
+      <form data-toggle="validator" role="form">
+
+        <div class="form-group col-md-9">
+          <label class="control-label" for="remoteValidator">Apellidos y Nombres</label>
+          <input type="text" placeholder="Ingrese datos personales" name="representante_nombre" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el nombre detenidamente</div>
+        </div>
+        <div class="form-group col-md-3">
+          <label class="control-label" for="remoteValidator">Cédula de Identidad</label>
+          <input type="text" placeholder="Ingrese cédula" name="representante_ci" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Formato V/E-00000000</div>
+        </div>
+
+
+
+	</div>
+	<div class="row">
+      <form data-toggle="validator" role="form">
+        <div class="form-group col-md-9">
+          <label class="control-label" for="remoteValidator">Cargo</label>
+          <input type="textarea" placeholder="Ingrese dirección" name="representante_cargo" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el cargo</div>
+        </div>
+        
+	</div>
+
+	<div class="row">
+      <form data-toggle="validator" role="form">
+        <div class="form-group col-md-2">
+          <label class="control-label" for="remoteValidator">Código de Área</label>
+          <input type="text" placeholder="Ingrese Código de Área" name="representante_zipcode" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el código</div>
+        </div>
+        <div class="form-group col-md-4">
+          <label class="control-label" for="remoteValidator">Teléfonos</label>
+          <input type="nimber" placeholder="Ingrese Números de Teléfono" name="representante_telfs" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique los números ingresados</div>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="control-label" for="remoteValidator">Fax</label>
+          <input type="number" placeholder="Ingrese número de fax" name="representante_fax" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el numero ingresado</div>
+        </div>
+         <div class="form-group col-md-4">
+          <label class="control-label" for="remoteValidator">Email</label>
+          <input type="number" placeholder="Ingrese correo electrónico" name="representante_email" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el numero ingresado</div>
+        </div>
+        
+	</div>
+	
+	
+	
+
+  <div class="row">
+  <div class="form-group col-md-10">
+          <button type="submit" id="1" class="btn btn-primary">Atrás</button>
+        </div>
+
+        <div class="form-group col-md-2">
+          <button type="submit" id="3" class="btn btn-primary">Siguiente</button>
+        </div>
+           
+           
+      </form>
+    </div>
+    
+    
+ <script>
+    $("button").click(function(e){
+		var pagina=$(this).attr("id");
+                $("div.bs-docs-section").empty();
+                 e.preventDefault();
+		if(pagina==1){
+                    $("div.bs-docs-section").load("{{path('uno')}}");
+                }else{
+                    $("div.bs-docs-section").load("{{path('tres')}}");
+                }
+
+			
+			
+		 });
+</script>

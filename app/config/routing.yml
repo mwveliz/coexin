@@ -1,3 +1,7 @@
+coexin_menu:
+    resource: "@CoexinBundle/Controller/MenuController.php"
+    type:     annotation
+    
 coexin_codigo_arancelario:
     resource: "@CoexinBundle/Controller/CodigoArancelarioController.php"
     type:     annotation
@@ -83,4 +87,4 @@ fos_user:
 
 homepage:
     pattern:     /
-    defaults: { _controller: CoexinBundle:Registro:index }
+    defaults: { _controller: CoexinBundle:Menu:one}

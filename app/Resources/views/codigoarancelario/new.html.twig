@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>CodigoArancelario creation</h1>
+    <h1>Nuevo Codigo Arancelario </h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                    <a href="{{ path('codigoarancelario_index') }}" class="btn btn-danger" role="button">Cancelar</a>
+                    <button type="button" class="btn btn-primary"  id="clear">Limpiar</button>
+                    <button type="submit" class="btn btn-info">Enviar</button>    {{ form_end(form) }}
 
     <ul>
         <li>

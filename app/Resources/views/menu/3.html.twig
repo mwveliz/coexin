@@ -1,0 +1,72 @@
+<div class="page-header">
+      <h1 id="validator">Declaración Jurada de Origen <small>Perfil del Producto</small></h1>
+    </div>
+
+    <h2 id="validator-examples">Datos y Número de Lugar de Destino</h2>
+    <p>P-1</p>
+    
+    <div class="well">
+
+	<div class="row">
+      <form data-toggle="validator" role="form">
+
+        <div class="form-group col-md-9">
+          <label class="control-label" for="remoteValidator">Lugar de Destino</label>
+          <input type="text" placeholder="Ingrese lugar de destino" name="destino_lugar" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el lugar de destino</div>
+        </div>
+        <div class="form-group col-md-3">
+          <label class="control-label" for="remoteValidator">Número de Destino</label>
+          <input type="number" placeholder="Ingrese número" name="destino_numero" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el número de destino</div>
+        </div>
+			
+
+
+	</div>
+	
+
+	<div class="row">
+
+		<div class="col-md-2">
+		</div>	
+		<div class="col-md-8">
+		<strong><p>
+			DECLARO BAJO PROTESTA DECIR VERDAD QUE:
+			</p>
+			<p>
+			 1.- LA INFORMACIÓN CONTENIDA EN ESTE DOCUMENTO ES VERDADERA Y EXACTA, Y ME HAGO RESPONSABLE
+			DE COMPROBAR LO AQUÍ DECLARADO. ESTOY CONSCIENTE QUE SERÉ RESPONSABLE POR CUALQUIER FALSA U
+			OMISIÓN HECHA O RELACIONADA CON EL PRESENTE DOCUMENTO 
+		</p>
+		</strong>
+		</div>	
+		
+	</div>
+  <div class="row">
+  <div class="form-group col-md-10">
+          <button type="submit" id="2" class="btn btn-primary">Atrás</button>
+        </div>
+		<div class="form-group col-md-2">
+          <button type="submit" id="4" class="btn btn-primary">Siguiente</button>
+        </div>
+      </form>
+    </div>
+ </div>
+    
+    
+ <script>
+    $("button").click(function(e){
+		var pagina=$(this).attr("id");
+		$("div.bs-docs-section").empty();
+                e.preventDefault();
+		if(pagina==2){
+                    $("div.bs-docs-section").load("{{path('dos')}}");
+                }else{
+                    $("div.bs-docs-section").load("{{path('cuatro')}}");
+                }
+
+			
+			
+		 });
+</script>

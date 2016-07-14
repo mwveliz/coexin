@@ -1,0 +1,60 @@
+<div class="page-header">
+      <h1 id="validator">Declaración Jurada de Origen <small>Perfil del Producto</small></h1>
+    </div>
+
+    <h2 id="validator-examples">Adjuntar documentos requeridos</h2>
+    <p>P-6</p>
+    
+    <div class="well">
+
+
+ <div class="row">
+	 	<div class="col-md-3">
+		</div>
+          <div class="form-group col-md-4">
+          <label class="control-label" for="remoteValidator">Registro Mercantil con Denominacion Social</label>
+          <input type="file" placeholder="Ingrese registro mercantil" name="registro_mercantil" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique adjunto</div>
+           </div>
+	   </div>
+	   
+	   <div class="row">
+	 	<div class="col-md-3">
+		</div>
+          <div class="form-group col-md-4">
+          <label class="control-label" for="remoteValidator">Copia del RIF</label>
+          <input type="file" placeholder="Ingrese copia del RIF" name="copia_rif" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique adjunto</div>
+           </div>
+	   </div>
+	   	
+	<div class="row">
+	 	<div class="col-md-3">
+		</div>
+          <div class="form-group col-md-4">
+          <label class="control-label" for="remoteValidator">Copia de la cedula de identidad</label>
+          <input type="file" placeholder="Ingrese copia de la cédula" name="copia_ci" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique adjunto</div>
+           </div>
+	   </div>	
+	
+
+
+<div class="row">
+	<div class="form-group col-md-4">
+          <button type="submit" id="7" class="btn btn-primary">Atrás</button>
+        </div>
+        <div class="form-group col-md-4">
+          <button type="submit" id="8" class="btn btn-primary">Finalizar y Enviar por correo</button>
+        </div>
+           
+           
+      </form>
+    </div>
+
+ <script>
+	 $("button#7").click(function(e){
+             e.preventDefault();    
+		$("div.bs-docs-section").load("{{path('siete')}}");
+	});
+ </script>
