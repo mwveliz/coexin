@@ -3,11 +3,13 @@
 namespace MIPP\CoexinBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MIPP\CoexinBundle\Entity\Persona;
 use MIPP\CoexinBundle\Form\PersonaType;
+use MIPP\CoexinBundle\Utility;
 
 /**
  * Persona controller.
@@ -58,7 +60,54 @@ class PersonaController extends Controller
             'form' => $form->createView(),
         ));
     }
+/**
+     * Creates via ajax a new Persona entity.
+     *
+     * @Route("/nueva", name="nueva_persona")
+     * @Method({"GET", "POST"})
+     */
+    public function nuevapersonaAction(Request $request)
+    {
+        
+        $persona= new Persona();
+        $persona->setCedula($request->get('persona_ci'));
+        $persona->setUsername($request->get('persona_ci'));
+        $persona->setPassword($request->get('persona_ci'));
+        $persona->setCargo($request->get('persona_cargo'));
+        $persona->setCodArea($request->get('persona_zipcode'));
+        $persona->setEmail($request->get('persona_email'));
+        $persona->setFax($request->get('persona_fax'));
+        $persona->setTelf1($request->get('persona_tlfs'));
+        $persona->setNacCedula($request->get('persona_nombre'));
+        $role = "ROLE_USER";
+        $persona->setRoles(array(serialize($role)));
 
+
+        
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($persona);
+            $em->flush();
+            
+        
+        return new Response('Ok');
+    }
+/**
+ * Buscar persona CNE via ajax
+ *  * @Route("/buscarpersona", name="buscar_persona")
+     * @Method({"GET", "POST"})
+ */    
+    public function buscarpersonaAction(Request $request)
+    {
+    $result='No se encontro la cédula, verifique';
+    $cedula=$request->get('cedula');
+    $cne = Utility::getNombreCne($cedula);
+    
+                if(strlen($cne)>0){
+                $result= strip_tags( html_entity_decode($cne, ENT_QUOTES, 'UTF-8'));
+                }
+      return new Response($result);
+    }
+    
     /**
      * Finds and displays a Persona entity.
      *

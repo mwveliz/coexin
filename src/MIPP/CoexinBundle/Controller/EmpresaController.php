@@ -1,7 +1,7 @@
 <?php
 
 namespace MIPP\CoexinBundle\Controller;
-
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -58,7 +58,39 @@ class EmpresaController extends Controller
             'form' => $form->createView(),
         ));
     }
-
+/**
+     * Creates via ajax a new Empresa entity.
+     *
+     * @Route("/nueva", name="nueva_empresa")
+     * @Method({"GET", "POST"})
+     */
+    public function nuevaempresaAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $empresa= new Empresa();
+        $empresa->setDescripcion($request->get('empresa_nombre'));
+        $empresa->setRif($request->get('empresa_rif'));
+        $empresa->setDireccionAdmin($request->get('empresa_direccionadmin'));
+        $empresa->setCodigoArea($request->get('empresa_empresa_areaadmin'));
+        $empresa->setCodPostalAdmin($request->get('empresa_zipcodeadmin'));
+        $empresa->setTelf1($request->get('empresa_telfsadmin'));
+        $empresa->setFaxAdmin($request->get('empresa_faxadmin'));
+        $empresa->setWebsite($request->get('empresa_website'));
+        $empresa->setEmail($request->get('empresa_email'));
+        $empresa->setDireccionPlanta($request->get('empresa_direccionplanta'));
+        $empresa->setCodigoArea($request->get('empresa_empresa_areaplanta'));
+        $empresa->setCodPostalPlanta($request->get('empresa_zipcodeplanta'));
+        $empresa->setTelf4($request->get('empresa_telfsplanta'));
+        $empresa->setFaxPlanta($request->get('empresa_faxplanta'));
+        $empresa->setIdPersona($em->getReference('MIPP\CoexinBundle\Entity\Persona', 0));
+        
+        $em->persist($empresa);
+        $em->flush();
+            
+        
+        return new Response('Ok');
+    }
     /**
      * Finds and displays a Empresa entity.
      *

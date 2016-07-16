@@ -6,20 +6,21 @@
     <p>P-1</p>
     
     <div class="well">
-
+      <form data-toggle="validator" name="formulario" id="formulario" action="" role="form">
 	<div class="row">
-      <form data-toggle="validator" role="form">
+      
 
-        <div class="form-group col-md-9">
-          <label class="control-label" for="remoteValidator">Apellidos y Nombres</label>
-          <input type="text" placeholder="Ingrese datos personales" name="representante_nombre" id="remoteValidator" class="form-control" data-remote="/validate">
-           <div class="help-block with-errors">Verifique el nombre detenidamente</div>
-        </div>
         <div class="form-group col-md-3">
           <label class="control-label" for="remoteValidator">Cédula de Identidad</label>
-          <input type="text" placeholder="Ingrese cédula" name="representante_ci" id="remoteValidator" class="form-control" data-remote="/validate">
+          <input type="text" placeholder="Ingrese cédula" name="persona_ci" id="persona_ci" class="form-control" data-remote="/validate">
            <div class="help-block with-errors">Formato V/E-00000000</div>
         </div>
+        <div class="form-group col-md-9">
+          <label class="control-label" for="remoteValidator">Apellidos y Nombres</label>
+          <input type="text" placeholder="Ingrese datos personales" name="persona_nombre" id="persona_nombre" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el nombre detenidamente</div>
+        </div>
+        
 
 
 
@@ -28,7 +29,7 @@
       <form data-toggle="validator" role="form">
         <div class="form-group col-md-9">
           <label class="control-label" for="remoteValidator">Cargo</label>
-          <input type="textarea" placeholder="Ingrese dirección" name="representante_cargo" id="remoteValidator" class="form-control" data-remote="/validate">
+          <input type="textarea" placeholder="Ingrese dirección" name="persona_cargo" id="persona_cargo" class="form-control" data-remote="/validate">
            <div class="help-block with-errors">Verifique el cargo</div>
         </div>
         
@@ -38,56 +39,83 @@
       <form data-toggle="validator" role="form">
         <div class="form-group col-md-2">
           <label class="control-label" for="remoteValidator">Código de Área</label>
-          <input type="text" placeholder="Ingrese Código de Área" name="representante_zipcode" id="remoteValidator" class="form-control" data-remote="/validate">
+          <input type="number" placeholder="Ingrese Código de Área" name="persona_zipcode" id="persona_zipcode" class="form-control" data-remote="/validate">
            <div class="help-block with-errors">Verifique el código</div>
         </div>
         <div class="form-group col-md-4">
           <label class="control-label" for="remoteValidator">Teléfonos</label>
-          <input type="nimber" placeholder="Ingrese Números de Teléfono" name="representante_telfs" id="remoteValidator" class="form-control" data-remote="/validate">
+          <input type="number" placeholder="Ingrese Números de Teléfono" name="persona_telfs" id="persona_telfs" class="form-control" data-remote="/validate">
            <div class="help-block with-errors">Verifique los números ingresados</div>
         </div>
         <div class="form-group col-md-2">
           <label class="control-label" for="remoteValidator">Fax</label>
-          <input type="number" placeholder="Ingrese número de fax" name="representante_fax" id="remoteValidator" class="form-control" data-remote="/validate">
+          <input type="number" placeholder="Ingrese número de fax" name="persona_fax" id="persona_fax" class="form-control" data-remote="/validate">
            <div class="help-block with-errors">Verifique el numero ingresado</div>
         </div>
          <div class="form-group col-md-4">
           <label class="control-label" for="remoteValidator">Email</label>
-          <input type="number" placeholder="Ingrese correo electrónico" name="representante_email" id="remoteValidator" class="form-control" data-remote="/validate">
+          <input type="number" placeholder="Ingrese correo electrónico" name="persona_email" id="persona_email" class="form-control" data-remote="/validate">
            <div class="help-block with-errors">Verifique el numero ingresado</div>
         </div>
         
 	</div>
 	
 	
-	
+	</form>
 
   <div class="row">
-  <div class="form-group col-md-10">
+    <div class="form-group col-md-10">
           <button type="submit" id="1" class="btn btn-primary">Atrás</button>
-        </div>
+    </div>
 
-        <div class="form-group col-md-2">
-          <button type="submit" id="3" class="btn btn-primary">Siguiente</button>
-        </div>
-           
-           
-      </form>
+    <div class="form-group col-md-2">
+        <button type="submit" id="3" class="btn btn-primary">Siguiente</button>
     </div>
     
+  </div>
+    
+</div>            
     
  <script>
+  $(document).ready(function(){
+   
     $("button").click(function(e){
 		var pagina=$(this).attr("id");
-                $("div.bs-docs-section").empty();
+                
                  e.preventDefault();
-		if(pagina==1){
+		if(pagina==1){ //retroceder
+                    $("div.bs-docs-section").empty();
                     $("div.bs-docs-section").load("{{path('uno')}}");
-                }else{
-                    $("div.bs-docs-section").load("{{path('tres')}}");
+                }else{ //avanzar 
+                        
+                   $.post( "{{path('nueva_persona')}}", $("form").serialize() )
+                        .done(function( data ) {
+                        alert( "Exito: " + data );
+                        $("div.bs-docs-section").empty();
+                        $("div.bs-docs-section").load("{{path('tres')}}");
+                        })
+                        .fail(function() {
+                        alert( "error" );
+                        });
+                    
+                    
                 }
+                
+                
 
 			
 			
 		 });
+                 
+                 
+                 
+        $("input[name='persona_ci']").change(function(){
+                var cedula=$(this).val();
+                $.get( "{{path('buscar_persona')}}", { cedula: cedula } )
+                        .done(function( result ) {
+                           
+                        $("input[name='persona_nombre']").val(result.trim());
+                });//fin get
+        });//fin    change input
+     });//fin document ready                
 </script>

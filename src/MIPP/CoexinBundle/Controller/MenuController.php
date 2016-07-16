@@ -8,8 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use MIPP\CoexinBundle\Entity\Moneda;
-use MIPP\CoexinBundle\Form\MonedaType;
+use MIPP\CoexinBundle\Entity\Persona;
+use MIPP\CoexinBundle\Form\PersonaType;
 
 /**
  * Menu controller.
@@ -55,10 +55,16 @@ class MenuController extends Controller
      * @Route("/dos", name="dos")
      * @Method("GET")
      */
-    public function dosAction()
-{
-    $template = $this->renderView('menu/2.html.twig');
-    return new Response($template);
+    public function dosAction(Request $request)
+{   
+        $persona= new Persona();
+        
+        $form = $this->createForm('MIPP\CoexinBundle\Form\PersonaType', $persona);
+        $form->handleRequest($request);
+        
+          return $this->render('menu/2.html.twig', array(
+            'form' => $form,
+        ));
 }
 
 

@@ -2,6 +2,7 @@
 
 {% block body %}
 
+
 <div class="page-header">
       <h1 id="validator">Declaración Jurada de Origen <small>Perfil del Producto</small></h1>
     </div>
@@ -10,19 +11,23 @@
     <p>P-1</p>
     
     <div class="well">
-
+        <form data-toggle="validator" name="formulario" role="form">
 	<div class="row">
-      <form data-toggle="validator" role="form">
-
+      
+        <div class="form-group col-md-3">
+          <label class="control-label" for="remoteValidator">Número de RIF</label>
+          <input type="text" placeholder="Ingrese RIF" name="empresa_rif" id="empresa_rif" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique los guiones</div>
+        </div>
         <div class="form-group col-md-6">
           <label class="control-label" for="remoteValidator">Nombre o Razón Social</label>
           <input type="text" placeholder="Ingrese denominación" name="empresa_nombre" id="remoteValidator" class="form-control" data-remote="/validate">
            <div class="help-block with-errors">Verifique el nombre detenidamente</div>
         </div>
-        <div class="form-group col-md-6">
-          <label class="control-label" for="remoteValidator">Número de RIF</label>
-          <input type="text" placeholder="Ingrese RIF" name="empresa_rif" id="remoteValidator" class="form-control" data-remote="/validate">
-           <div class="help-block with-errors">Verifique los guiones</div>
+           <div class="form-group col-md-3">
+          <label class="control-label" for="remoteValidator">Es Comercializador</label>
+          <input type="checkbox" placeholder="" name="empresa_comercializador" class="form-control">
+           <div class="help-block with-errors">Marque si no es productor</div>
         </div>
 
 	</div>
@@ -64,7 +69,7 @@
       <form data-toggle="validator" role="form">
         <div class="form-group col-md-6">
           <label class="control-label" for="remoteValidator">Página Web</label>
-          <input type="text" placeholder="Ingrese p{agina web" name="empresa_website" id="remoteValidator" class="form-control" data-remote="/validate">
+          <input type="text" placeholder="Ingrese sitio web" name="empresa_website" id="remoteValidator" class="form-control" data-remote="/validate">
            <div class="help-block with-errors">Verifique el código</div>
         </div>
         <div class="form-group col-md-6">
@@ -107,8 +112,8 @@
         </div>
         
 	</div>
-	
-	
+	</form>
+	</div>
 
   <div class="row">
   
@@ -117,7 +122,7 @@
       <div class="form-group col-md-2">
           <button id="2" type="submit" class="btn btn-primary">Siguiente</button>
         </div>
-      </form>
+      
     </div>
     {% endblock %}
      {% block javascripts  %}
@@ -125,8 +130,18 @@
     $("button").click(function(e){
                         
                         e.preventDefault();
-			$("div.bs-docs-section").empty();
+                         $.post( "{{path('nueva_empresa')}}", $("form").serialize() )
+                            .done(function( data ) {
+                             alert( "Exito: " + data );
+                                  $("div.bs-docs-section").empty();
 			$("div.bs-docs-section").load("{{ path("dos") }}");
+                             })
+                             .fail(function() {
+                                  alert( "error" );
+                             });
+                        
+                        
+			
 			
 			
 			
