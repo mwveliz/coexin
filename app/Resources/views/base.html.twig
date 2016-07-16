@@ -23,31 +23,36 @@
 
              </div>
            </header>
-           <div class="container bs-docs-container">
+           <div class="container-fuid bs-docs-container">
     
               <div class="row">
                 <div class="col-md-2">
                     
-                  <div class="bs-sidebar " >
+                  <nav class="bs-docs-sidebar">
                       <br>
-                    <ul class="nav bs-sidenav">
-                        
+                    <ul id="sidebar" class="nav bs-sidenav nav-stacked fixed">
+                        <li><strong>Código: </strong><input id="registro_codigoregistro" name="registro_codigoregistro" readonly type="text" value="" 
+                                    style="border: none;text-align: right; font-weight: bold">    </li>
+                        <li>-------</li>
                         <li class="active">
                         
                         {{ knp_menu_render('CoexinBundle:Builder:mainMenu') }}
                        </li>   
                     </ul>
                         
-                  </div>
+                  </nav>
                 </div>
                 <div class="col-md-10" role="main">
                     <!-- Dropdowns
           ================================================== -->
-          
-
+           <input id="registro_idempresa" name="registro_idempresa" type="hidden" value="" >      
+              <input id="registro_idpersona" name="registro_idpersona" type="hidden" value="" >
+              <input id="registro_idregistro" name="registro_idregistro" type="hidden" value="" >
+ 
 
             <div class="bs-docs-section">
-
+             
+                     
         {% block body %}
         
         {% endblock %}
@@ -64,6 +69,38 @@
          <script src={{asset('js/jquery.js')}} type="text/javascript"></script>
          <script src={{asset('js/bootstrap.js')}} type="text/javascript"></script>
         <script src={{asset('js/validator.js')}} type="text/javascript"></script>
-                {% block javascripts  %}{% endblock %}
+        {% block javascripts  %}
+ <script>
+     
+     
+ $(document).ready(function(){
+    $("button#dos").on('click',function(e){
+                        
+                        e.preventDefault();
+                         $.post( "{{path('nueva_empresa')}}", $("form").serialize() )
+                            .done(function( data ) {
+                                   
+                                 $('input[name="registro_idempresa"]:hidden').val(data.idempresa);
+                                 $('input[name="registro_idregistro"]:hidden').val(data.idregistro);
+                                 $('input[name="registro_codigoregistro"]').val(data.codregistro);
+                                  
+                                  $("div.bs-docs-section").empty();
+                                  $("div.bs-docs-section").load("{{ path("dos") }}");
+                             })
+                             .fail(function() {
+                                  alert( "Error, verifique" );
+                             });
+                             
+                        
+			
+			
+			
+			
+		 });
+                 
+  });               
+</script>
+{% endblock %}
+                
     </body>
 </html>

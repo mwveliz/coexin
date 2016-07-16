@@ -15,7 +15,7 @@
         <tbody>
         {% for registro in registros %}
             <tr>
-                <td><a href="{{ path('registro_show', { 'id': registro.id }) }}">{{ registro.fecha }}</a></td>
+                <td><a href="{{ path('registro_show', { 'id': registro.id }) }}">{{ registro.fecha|date }}</a></td>
                 <td>{{ registro.codigoRegistro }}</td>
                 <td>{{ registro.id }}</td>
                 <td>

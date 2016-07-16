@@ -29,8 +29,48 @@ class Builder implements ContainerAwareInterface
 
         $menu->addChild('Listar Registros', array(
             'route' => 'registro_index',
+            
         //    'routeParameters' => array('id' => $registro->getId())
         ));
+        
+        
+         $menu->addChild('Listar Empresas', array(
+            'route' => 'empresa_index',
+        //    'routeParameters' => array('id' => $registro->getId())
+        ));
+
+         $menu->addChild('Listar Usuarios', array(
+            'route' => 'persona_index',
+        //    'routeParameters' => array('id' => $registro->getId())
+        ));
+         
+         $menu->addChild('Listar Materiales', array(
+            'route' => 'material_index',
+        //    'routeParameters' => array('id' => $registro->getId())
+        ));
+         
+        $menu->addChild('Listar Productos', array(
+            'route' => 'producto_index',
+        //    'routeParameters' => array('id' => $registro->getId())
+        ));
+        
+        $menu->addChild('Listar Paises', array(
+            'route' => 'pais_index',
+        //    'routeParameters' => array('id' => $registro->getId())
+        ));
+         
+        $menu->addChild('Listar Documentos', array(
+            'route' => 'documentoempresa_index',
+        //    'routeParameters' => array('id' => $registro->getId())
+        ));
+       
+        $menu->addChild('Listar Catalogos', array(
+            'route' => 'documentoproducto_index',
+        //    'routeParameters' => array('id' => $registro->getId())
+        ));
+         
+        
+          
 
         // create another menu item
         //$menu->addChild('About Me', array('route' => 'about'));

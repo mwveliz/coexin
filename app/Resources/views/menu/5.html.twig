@@ -183,7 +183,7 @@
 		<table id="precio_total" class="table table-hover">
 				<tbody>
 				<tr>
-				<td>Precio FOB de Exportación</td>
+				<td>Precio FOB/FOC de Exportación</td>
 				<td id="precio_total"><input type="number"></td>
 				</tr>
 				</tbody>
@@ -197,38 +197,59 @@
 		
 		
   <div class="row">
-  <div class="form-group col-md-10">
+  <div class="form-group col-md-4">
           <button type="submit" id="4" class="btn btn-primary">Atrás</button>
         </div>
 
+      
+      <div class="form-group col-md-5">
+          <button type="submit" id="3" class="btn btn-primary">Agregar más productos</button>
+        </div>
+      
+      
         <div class="form-group col-md-2">
-          <button type="submit" id="6" class="btn btn-primary">Siguiente</button>
+          <button type="submit" id="6" class="btn btn-primary">No agregar mas productos</button>
         </div>
            
            
       </form>
     </div>
     
-  
-    
-    
-    
-    
-    
-    
- <script>
+  <script>
 	 
 	  
 	 
     $("button").click(function(e){
 		var pagina=$(this).attr("id");
-		$("div.bs-docs-section").empty();
+		
                 e.preventDefault();
 		if(pagina==4){
+                    
+                    $("div.bs-docs-section").empty();
                     $("div.bs-docs-section").load("{{path('cuatro')}}");
-                }else{
-                    $("div.bs-docs-section").load("{{path('seis')}}");
                 }
+                if(pagina==3){
+                    var r = confirm("Seguro que desea agregar mas productos? no podrá avanzar si no agrega productos");
+                    if (r == true) {
+                        e.preventDefault();
+                        $("div.bs-docs-section").empty();
+                        $("div.bs-docs-section").load("{{path('cuatro')}}");
+                    } else {
+                        e.preventDefault();   
+                }
+                }//fin si
+                if(pagina==6){
+                var txt;
+                var r = confirm("Seguro que no desea agregar mas productos? Luego no podrá volver");
+                    if (r == true) {
+                        e.preventDefault();
+                        $("div.bs-docs-section").empty();
+                        $("div.bs-docs-section").load("{{path('seis')}}");
+                    } else {
+                        e.preventDefault();   
+                }
+                }
+                
 
 		 });
 		 

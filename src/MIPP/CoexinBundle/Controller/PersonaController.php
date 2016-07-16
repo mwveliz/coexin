@@ -26,9 +26,10 @@ class PersonaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $personas = $em->getRepository('CoexinBundle:Persona')->findAll();
+        $userManager = $this->container->get('fos_user.user_manager');
+         
+        $personas  = $userManager->findUsers();
+        
 
         return $this->render('persona/index.html.twig', array(
             'personas' => $personas,
@@ -67,7 +68,8 @@ class PersonaController extends Controller
      * @Method({"GET", "POST"})
      */
     public function nuevapersonaAction(Request $request)
-    {
+    {   
+        
         
         $persona= new Persona();
         $persona->setCedula($request->get('persona_ci'));
@@ -82,14 +84,20 @@ class PersonaController extends Controller
         $role = "ROLE_USER";
         $persona->setRoles(array(serialize($role)));
 
-
-        
             $em = $this->getDoctrine()->getManager();
             $em->persist($persona);
             $em->flush();
             
         
-        return new Response('Ok');
+        /**agrego esta persona a la empresa/*/
+        $idempresa=($request->get('persona_empresa'));
+        $empresa=$em->getRepository('CoexinBundle:Empresa')->findOneBy(array('id'=> $idempresa)); 
+        $empresa->setIdPersona($em->getReference('MIPP\CoexinBundle\Entity\Persona', $persona->getId()));
+        $em->persist($empresa);
+            $em->flush();
+            
+        
+        return new Response($persona->getId());
     }
 /**
  * Buscar persona CNE via ajax

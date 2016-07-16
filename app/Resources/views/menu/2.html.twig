@@ -7,6 +7,7 @@
     
     <div class="well">
       <form data-toggle="validator" name="formulario" id="formulario" action="" role="form">
+          <input type="hidden" name="persona_empresa" id="persona_empresa">
 	<div class="row">
       
 
@@ -78,6 +79,9 @@
     
  <script>
   $(document).ready(function(){
+   $("input#persona_empresa").val($("input#registro_idempresa").val());//amarro los dos input
+   
+   
    
     $("button").click(function(e){
 		var pagina=$(this).attr("id");
@@ -90,20 +94,14 @@
                         
                    $.post( "{{path('nueva_persona')}}", $("form").serialize() )
                         .done(function( data ) {
-                        alert( "Exito: " + data );
-                        $("div.bs-docs-section").empty();
+                            $('input#registro_idpersona:hidden').val(data)
+                            
                         $("div.bs-docs-section").load("{{path('tres')}}");
                         })
                         .fail(function() {
                         alert( "error" );
                         });
-                    
-                    
                 }
-                
-                
-
-			
 			
 		 });
                  

@@ -2,12 +2,14 @@
 
 namespace MIPP\CoexinBundle\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MIPP\CoexinBundle\Entity\Empresa;
 use MIPP\CoexinBundle\Form\EmpresaType;
+use MIPP\CoexinBundle\Entity\Registro;
 
 /**
  * Empresa controller.
@@ -84,12 +86,24 @@ class EmpresaController extends Controller
         $empresa->setTelf4($request->get('empresa_telfsplanta'));
         $empresa->setFaxPlanta($request->get('empresa_faxplanta'));
         $empresa->setIdPersona($em->getReference('MIPP\CoexinBundle\Entity\Persona', 0));
-        
+        $empresa->setComercializador($request->get('empresa_comercializador'));
         $em->persist($empresa);
         $em->flush();
-            
+       
+        ////creo el codigo de registro
+        $registro = new Registro();
+        $registro->setIdEmpresa($em->getReference('MIPP\CoexinBundle\Entity\Empresa', $empresa->getId()));
+        $registro->setFecha(new \DateTime);
+        $em->persist($registro);
+        $registro->setFecha(new \DateTime);
+        $registro->setCodigoRegistro(time());
+        $em->flush();
         
-        return new Response('Ok');
+        $arreglo=array( 'idempresa'=>$empresa->getId(),
+                        'idregistro'=>$registro->getId(),
+                        'codregistro'=> $registro->getCodigoRegistro());
+        
+        return new JsonResponse($arreglo);
     }
     /**
      * Finds and displays a Empresa entity.
