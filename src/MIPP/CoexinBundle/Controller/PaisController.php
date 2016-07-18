@@ -3,6 +3,8 @@
 namespace MIPP\CoexinBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -137,4 +139,32 @@ class PaisController extends Controller
             ->getForm()
         ;
     }
+    
+ /**
+     * Search autocomplete a Pais entity.
+     *
+     * @Route("/ajax/autocompletar", name="paisautocompletar")
+     * @Method({"GET", "POST"})
+     */   
+    public function paisautocompletarAction(Request $request)
+    {
+    $em = $this->getDoctrine()->getManager();
+
+    $paises= $em->getRepository('CoexinBundle:Pais')->findAll();
+    $objeto=array();
+    $arreglo=array();
+
+    foreach($paises as $pais){
+        $indice=(string) $pais->getId();
+        $objeto['id']=(string) $pais->getId();
+        $objeto['value']= $pais->getDescripcion();
+        array_push($arreglo, $objeto);
+    }
+
+    return new JsonResponse($arreglo);
+    }
+    
+    
+    
+    
 }

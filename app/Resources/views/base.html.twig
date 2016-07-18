@@ -8,6 +8,7 @@
   
   <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('css/docs.css') }}" rel="stylesheet" media="screen">
+    
      <link href="{{ asset('css/pygments-manni.css') }}" rel="stylesheet" media="screen">
     <title>MIPPCOEXIN</title>
   </head>
@@ -45,9 +46,10 @@
                 <div class="col-md-10" role="main">
                     <!-- Dropdowns
           ================================================== -->
-           <input id="registro_idempresa" name="registro_idempresa" type="hidden" value="" >      
+              <input id="registro_idempresa" name="registro_idempresa" type="hidden" value="" >      
               <input id="registro_idpersona" name="registro_idpersona" type="hidden" value="" >
               <input id="registro_idregistro" name="registro_idregistro" type="hidden" value="" >
+              <input id="registro_idproducto" name="registro_idproducto" type="hidden" value="" >
  
 
             <div class="bs-docs-section">
@@ -88,7 +90,7 @@
                                   $("div.bs-docs-section").load("{{ path("dos") }}");
                              })
                              .fail(function() {
-                                  alert( "Error, verifique" );
+                                  alert( "Error, verifique los datos" );
                              });
                              
                         
@@ -98,7 +100,8 @@
 			
 		 });
                  
-  });               
+  });   
+  
 </script>
 {% endblock %}
                 

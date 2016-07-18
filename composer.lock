@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c7bfb623d6a27e10b5a10d7245d1db7b",
-    "content-hash": "a3146e599d34a4e07c54e6d750e978e3",
+    "hash": "5ce00e24dc4148b5c9d6837efa8aa271",
+    "content-hash": "ed8ff2032c3eb1cc418b2ad8f1cb8bc0",
     "packages": [
         {
             "name": "braincrafted/bootstrap-bundle",
@@ -1487,6 +1487,53 @@
                 "minification"
             ],
             "time": "2015-11-12 13:51:40"
+        },
+        {
+            "name": "lifo/typeahead-bundle",
+            "version": "2.3.2",
+            "target-dir": "Lifo/TypeaheadBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lifo101/typeahead-bundle.git",
+                "reference": "8296731bce2b1561e24ac19ddbc4baf7b05662fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lifo101/typeahead-bundle/zipball/8296731bce2b1561e24ac19ddbc4baf7b05662fe",
+                "reference": "8296731bce2b1561e24ac19ddbc4baf7b05662fe",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/symfony": "^2.6 || ^3.0"
+            },
+            "suggest": {
+                "mopa/bootstrap-bundle": "Bundle to automatically enable Bootstrap styles for Symfony",
+                "twbs/bootstrap": "Bootstrap framework"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Lifo\\TypeaheadBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jason Morriss",
+                    "email": "lifo2013@gmail.com"
+                }
+            ],
+            "description": "A Symfony bundle that provides an autocomplete Typeahead form type compatible with Bootstrap v2|v3",
+            "keywords": [
+                "autocomplete",
+                "bootstrap",
+                "symfony",
+                "typeahead"
+            ],
+            "time": "2016-07-15 13:02:33"
         },
         {
             "name": "monolog/monolog",

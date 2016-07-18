@@ -1,7 +1,8 @@
 <?php
 
 namespace MIPP\CoexinBundle\Controller;
-
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -136,5 +137,30 @@ class CodigoArancelarioController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    
+    
+    /**
+     * Search autocomplete a CodigoNCM entity.
+     *
+     * @Route("/ajax/autocompletar", name="codigoarancelarioautocompletar")
+     * @Method({"GET", "POST"})
+     */   
+    public function codigoarancelarioautocompletarAction(Request $request)
+    {
+    $em = $this->getDoctrine()->getManager();
+
+    $cods= $em->getRepository('CoexinBundle:CodigoArancelario')->findAll();
+    $objeto=array();
+    $arreglo=array();
+
+    foreach($cods as $cod){
+        $indice=(string) $cod->getId();
+        $objeto['id']=(string) $cod->getId();
+        $objeto['value']= $cod->getDescripcion();
+        array_push($arreglo, $objeto);
+    }
+
+    return new JsonResponse($arreglo);
     }
 }

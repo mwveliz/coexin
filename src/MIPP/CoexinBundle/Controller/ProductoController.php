@@ -3,11 +3,17 @@
 namespace MIPP\CoexinBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MIPP\CoexinBundle\Entity\Producto;
+use MIPP\CoexinBundle\Entity\ProductoEmpresa;
+use MIPP\CoexinBundle\Entity\Material;
+use MIPP\CoexinBundle\Entity\ProductoMaterial;
 use MIPP\CoexinBundle\Form\ProductoType;
+
 
 /**
  * Producto controller.
@@ -59,6 +65,43 @@ class ProductoController extends Controller
         ));
     }
 
+    /**
+     * Creates via ajax a new Persona entity.
+     *
+     * @Route("/nuevo_registroproducto", name="nuevo_registroproducto")
+     * @Method({"GET", "POST"})
+     */
+    public function nuevoregistroproductoAction(Request $request)
+    {   
+        
+        $em = $this->getDoctrine()->getManager();
+
+       $producto= new Producto();
+       $producto->setDenominacionComercial($request->get('producto_nombre'));
+       $producto->setIdCodigoNcm($request->get('producto[idCodigoNcm]'));
+       $producto->setUnidadMedida($request->get('producto_unidad'));
+       $em->persist($producto);
+       $em->flush();
+        
+        //salvando el producto relacionado a la empresa a traves del registro
+        $id_producto=$producto->getId();
+        $id_registro=$request->get('producto_registro');
+        $producto_empresa = new ProductoEmpresa();
+        $producto_empresa->setIdProducto($em->getReference('MIPP\CoexinBundle\Entity\Producto', $id_producto));
+        $producto_empresa->setIdRegistro($em->getReference('MIPP\CoexinBundle\Entity\Registro', $id_registro));
+        $em->persist($producto_empresa);
+        $em->flush();
+        
+        //salvando materiales
+        
+        $material= new Material();
+                
+        
+        //salvando relacion de materiales con el prod
+        
+        
+        return new Response($id_producto);
+    }
     /**
      * Finds and displays a Producto entity.
      *

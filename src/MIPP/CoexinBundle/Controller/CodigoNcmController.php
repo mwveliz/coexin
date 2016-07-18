@@ -1,6 +1,9 @@
 <?php
 
 namespace MIPP\CoexinBundle\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -137,4 +140,29 @@ class CodigoNcmController extends Controller
             ->getForm()
         ;
     }
+    
+    /**
+     * Search autocomplete a CodigoNCM entity.
+     *
+     * @Route("/ajax/autocompletar", name="codigoncmautocompletar")
+     * @Method({"GET", "POST"})
+     */   
+    public function codigoncmautocompletarAction(Request $request)
+    {
+    $em = $this->getDoctrine()->getManager();
+
+    $cods= $em->getRepository('CoexinBundle:CodigoNcm')->findAll();
+    $objeto=array();
+    $arreglo=array();
+
+    foreach($cods as $cod){
+        $indice=(string) $cod->getId();
+        $objeto['id']=(string) $cod->getId();
+        $objeto['value']= $cod->getDescripcion();
+        array_push($arreglo, $objeto);
+    }
+
+    return new JsonResponse($arreglo);
+    }
+    
 }

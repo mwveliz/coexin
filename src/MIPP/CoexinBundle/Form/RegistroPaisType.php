@@ -15,8 +15,16 @@ class RegistroPaisType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('idPais')
-            ->add('idRegistro')
+            ->add('idPais','entity_typeahead', array(
+                'label' => 'Lugar (País)',
+                'class' => 'CoexinBundle:Pais',
+                'render' => 'id_pais',
+                'route' => 'paisautocompletar',
+                'attr' => array(
+                    'class' => 'form-control form-group, fila_importado'
+                ),
+            ))
+           // ->add('idRegistro')
         ;
     }
     

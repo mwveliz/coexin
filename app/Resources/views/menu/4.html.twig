@@ -1,4 +1,6 @@
-<div class="page-header">
+ <link href="{{ asset('css/lifo_typeahead.css') }}" rel="stylesheet" media="screen">
+
+ <div class="page-header">
       <h1 id="validator">Declaración Jurada de Origen <small>Perfil del Producto</small></h1>
     </div>
 
@@ -6,10 +8,10 @@
     <p>P-2</p>
     
     <div class="well">
-
+  <form data-toggle="validator" name="formulario" id="formulario" action="" role="form">
+          <input type="hidden" name="producto_registro" id="producto_registro">
 	<div class="row">
-      <form data-toggle="validator" role="form">
-
+    
         <div class="form-group col-md-6">
           <label class="control-label" for="remoteValidator">Denominación Comercial</label>
           <input type="text" placeholder="Ingrese nombre comercial del producto" name="producto_nombre" id="remoteValidator" class="form-control" data-remote="/validate">
@@ -29,14 +31,14 @@
   <div class="row">
 	
 		<div class="col-md-4">
-		  <label class="control-label" for="remoteValidator">Código Arancelario NCM 212</label>
-          <input type="number" placeholder="Ingrese descripción arancelaria" name="producto_ncm212" id="remoteValidator" class="form-control" data-remote="/validate">
-           <div class="help-block with-errors">Verifique el código Arancelario</div>
+		
+                         {{ form_row(form_producto.idCodigoNcm) }}          
+                    <div class="help-block with-errors">Verifique el código Arancelario</div>
        
 		</div>	
 		<div class="col-md-8">
 			<label class="control-label" for="remoteValidator">Unidad de medida, uso y aplicación</label>
-          <input type="number" placeholder="Ingrese descripción arancelaria" name="producto_unidad" id="remoteValidator" class="form-control" data-remote="/validate">
+          <input type="number" placeholder="Unidad de medida" name="producto_unidad" id="remoteValidator" class="form-control" data-remote="/validate">
            <div class="help-block with-errors">Verifique la unidad de medida, uso y aplicación</div>
 		
 		</div>
@@ -60,14 +62,13 @@
        
 		</div>	
 		<div class="col-md-2">
-			<label class="control-label" for="remoteValidator">Código Arancelario</label>
-          <input type="text" placeholder="Ingrese código" name="material_importado_codigo" id="remoteValidator" class="form-control fila_importado" data-remote="/validate">
+			
+            {{ form_row(form_material.idCodigoArancelario,{ 'attr': {'class': 'fila_importado'}} ) }}     
            <div class="help-block with-errors">Verifique código</div>
 		</div>
 		<div class="col-md-2">
-		  <label class="control-label" for="remoteValidator">País de Origen</label>
-          <input type="text" placeholder="Ingrese descripción del material" name="material_importado_pais" id="remoteValidator" class="form-control fila_importado" data-remote="/validate">
-           <div class="help-block with-errors">Verifique País</div>
+		    {{ form_row(form_pais.idPais) }}      
+         <div class="help-block with-errors">Verifique País</div>
        
 		</div>	
 		<div class="col-md-2">
@@ -116,8 +117,8 @@
        
 		</div>	
 		<div class="col-md-2">
-			<label class="control-label" for="remoteValidator">Código Arancelario</label>
-          <input type="text" placeholder="Ingrese código" name="material_importado_codigo" id="remoteValidator" class="form-control fila_nacional" data-remote="/validate">
+			
+                        {{ form_row(form_producto.idCodigoArancelario ,{ 'attr': {'id':'material_nacional_codigo_arancelario' , 'class': 'fila_nacional'}})  }}      
            <div class="help-block with-errors">Verifique código</div>
 		</div>
 		<div class="col-md-2">
@@ -189,8 +190,11 @@
     
     
     
-    
+   <script src={{asset('js/lifo_typeahead.js')}} type="text/javascript"></script> 
  <script>
+
+         
+
 	 
 	 function getRowIndex( el ) {
     while( (el = el.parentNode) && el.nodeName.toLowerCase() !== 'tr' );
@@ -206,15 +210,31 @@
 				$("table#nacional tr:eq("+idX+")").remove();
 			 }
 	 
-	 
+$(document).ready(function(){     
+     $("input#producto_registro").val($("input#registro_idregistro:hidden").val());//amarro los dos input
+   
+   	 
+	  	 
     $("button").click(function(e){
 		var pagina=$(this).attr("id");
-		$("div.bs-docs-section").empty();
+		
                 e.preventDefault();
 		if(pagina==3){
+                    $("div.bs-docs-section").empty();
                     $("div.bs-docs-section").load("{{path('tres')}}");
-                }else{
-                    $("div.bs-docs-section").load("{{path('cinco')}}");
+                }else{//avanzar
+                    
+                    
+                    $("#producto_idCodigoNcm_text").val($("#producto_idCodigoNcm:hidden" ).val());
+                    $.post( "{{path('nuevo_registroproducto')}}",  $("form").serialize() )
+                        .done(function( data ) {
+                         //$("div.bs-docs-section").load("{{path('cinco')}}");
+                         //$("input#registro_idproducto").val(id_producto);//seteo el valor del id producto  
+                        })
+                        .fail(function() {
+                        alert( "Error, verifique los datos" );
+                        });
+              
                 }
 
 		 });
@@ -225,7 +245,7 @@
 	/*****AGREGANDO A LA PRIMERA TABLA****/
 	$("#agrega_importado").click(function(){
 		var fila='<tr>';
-		$(".fila_importado").each(function( index ) {
+		$("input.fila_importado:not(:hidden)").each(function( index ) {
 			fila=fila+'<td>'+$(this).val()+'</td>';
 		});
 		fila=fila+'<td><a><span onclick="borra_importado(getRowIndex(this))" style="font-size: 25px; cursor: pointer;" data-toggle="tooltip" title="Borrar" class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></a></td></tr>';
@@ -238,7 +258,7 @@
 		/**********AGREGANDO A LA SEGUNDA LA PRIMERA TABLA****/
 	$("#agrega_nacional").click(function(){
 		var fila='<tr>';
-		$(".fila_nacional").each(function( index ) {
+		$(".fila_nacional:not(:hidden)").each(function( index ) {
 			fila=fila+'<td>'+$(this).val()+'</td>';
 		});
 		fila=fila+'<td><a><span onclick="borra_nacional(getRowIndex(this))" style="font-size: 25px; cursor: pointer;" data-toggle="tooltip" title="Borrar" class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></a></td></tr>';
@@ -247,5 +267,5 @@
 		$(".fila_nacional").val("");
 		}); 
 			 
-		 
+});	//fin document ready		 
 </script>

@@ -3,6 +3,8 @@
 namespace MIPP\CoexinBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -57,6 +59,28 @@ class RegistroPaisController extends Controller
             'registroPai' => $registroPai,
             'form' => $form->createView(),
         ));
+    }
+    
+    /**
+     * Creates via ajax a new Persona entity.
+     *
+     * @Route("/nuevo_registropais", name="nuevo_registropais")
+     * @Method({"GET", "POST"})
+     */
+    public function nuevoregistropaisAction(Request $request)
+    {   
+        
+        $em = $this->getDoctrine()->getManager();
+
+        $registropais= new RegistroPais();
+        $registropais->setIdRegistro($em->getReference('MIPP\CoexinBundle\Entity\Registro', $request->get('id_registro')) );
+        $registropais->setIdPais($em->getReference('MIPP\CoexinBundle\Entity\Pais', $request->get('id_pais'))) ;
+        
+             $em->persist($registropais);
+            $em->flush();
+            
+        
+        return new Response($registropais->getId());
     }
 
     /**

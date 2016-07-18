@@ -10,7 +10,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MIPP\CoexinBundle\Entity\Persona;
 use MIPP\CoexinBundle\Form\PersonaType;
-
+use MIPP\CoexinBundle\Entity\RegistroPais;
+use MIPP\CoexinBundle\Form\RegistroPaisType;
+use MIPP\CoexinBundle\Entity\Producto;
+use MIPP\CoexinBundle\Form\ProductoType;
+use MIPP\CoexinBundle\Entity\Material;
+use MIPP\CoexinBundle\Form\MaterialType;
 /**
  * Menu controller.
  *
@@ -63,7 +68,7 @@ class MenuController extends Controller
         $form->handleRequest($request);
         
           return $this->render('menu/2.html.twig', array(
-            'form' => $form,
+            'form' => $form->createView(),
         ));
 }
 
@@ -75,23 +80,48 @@ class MenuController extends Controller
      * @Route("/tres", name="tres")
      * @Method("GET")
      */
-    public function tresAction()
+    public function tresAction(Request $request)
 {
-    $template = $this->renderView('menu/3.html.twig');
-    return new Response($template);
-}
+     $registropais= new RegistroPais();
+        
+        $form = $this->createForm('MIPP\CoexinBundle\Form\RegistroPaisType', $registropais);
+        $form->handleRequest($request);
+        
+          return $this->render('menu/3.html.twig', array(
+            'form' => $form->createView(),
+        ));
     
-   
+}
  /**
      * Load 4th template via ajax
      *
      * @Route("/cuatro", name="cuatro")
      * @Method("GET")
      */
-    public function cuatroAction()
+    public function cuatroAction(Request $request)
 {
-    $template = $this->renderView('menu/4.html.twig');
-    return new Response($template);
+       $registropais= new RegistroPais();
+       $producto= new Producto();
+       $material= new Material();
+
+       
+       $form_pais = $this->createForm('MIPP\CoexinBundle\Form\RegistroPaisType', $registropais);
+       $form_producto = $this->createForm('MIPP\CoexinBundle\Form\ProductoType', $producto);
+       $form_material = $this->createForm('MIPP\CoexinBundle\Form\MaterialType', $material);
+       //$form->handleRequest($request);
+       //$form2->handleRequest($request);
+        
+        
+          return $this->render('menu/4.html.twig', array(
+            'form_pais' => $form_pais->createView(),
+            'form_producto' => $form_producto->createView(),
+            'form_material' => $form_material->createView(),
+              
+        ));
+          
+          
+          
+          
 }
 
  /**
@@ -100,7 +130,7 @@ class MenuController extends Controller
      * @Route("/cinco", name="cinco")
      * @Method("GET")
      */
-    public function cincoAction()
+    public function cincoAction(Request $request)
 {
     $template = $this->renderView('menu/5.html.twig');
     return new Response($template);
@@ -112,7 +142,7 @@ class MenuController extends Controller
      * @Route("/seis", name="seis")
      * @Method("GET")
      */
-    public function seisAction()
+    public function seisAction(Request $request)
 {
     $template = $this->renderView('menu/6.html.twig');
     return new Response($template);
@@ -123,7 +153,7 @@ class MenuController extends Controller
      * @Route("/siete", name="siete")
      * @Method("GET")
      */
-    public function sieteAction()
+    public function sieteAction(Request $request)
 {
     $template = $this->renderView('menu/7.html.twig');
     return new Response($template);
@@ -135,7 +165,7 @@ class MenuController extends Controller
      * @Route("/ocho", name="ocho")
      * @Method("GET")
      */
-    public function ochoAction()
+    public function ochoAction(Request $request)
 {
     $template = $this->renderView('menu/8.html.twig');
     return new Response($template);

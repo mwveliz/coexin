@@ -22,7 +22,7 @@ class AppKernel extends Kernel
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
-            
+            new Lifo\TypeaheadBundle\LifoTypeaheadBundle(),
             
         );
 

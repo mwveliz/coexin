@@ -29,11 +29,17 @@
 	<div class="row">
       <form data-toggle="validator" role="form">
         <div class="form-group col-md-9">
-          <label class="control-label" for="remoteValidator">Cargo</label>
-          <input type="textarea" placeholder="Ingrese dirección" name="persona_cargo" id="persona_cargo" class="form-control" data-remote="/validate">
-           <div class="help-block with-errors">Verifique el cargo</div>
+          <label class="control-label" for="remoteValidator">Lugar de residencia</label>
+          <textarea placeholder="Ingrese dirección" name="persona_cargo" id="persona_lugarresidencia" class="form-control" data-remote="/validate" rows="2" cols="60">
+        </textarea>
+           <div class="help-block with-errors">Verifique el lugar de residencia</div>
         </div>
         
+          <div class="form-group col-md-3">
+          <label class="control-label" for="remoteValidator">Cargo</label>
+          <input type="text" placeholder="Ingrese cargo" name="persona_cargo" id="persona_cargo" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el cargo</div>
+        </div>
 	</div>
 
 	<div class="row">
@@ -55,7 +61,7 @@
         </div>
          <div class="form-group col-md-4">
           <label class="control-label" for="remoteValidator">Email</label>
-          <input type="number" placeholder="Ingrese correo electrónico" name="persona_email" id="persona_email" class="form-control" data-remote="/validate">
+          <input type="email" placeholder="Ingrese correo electrónico" name="persona_email" id="persona_email" class="form-control" data-remote="/validate">
            <div class="help-block with-errors">Verifique el numero ingresado</div>
         </div>
         
@@ -99,7 +105,7 @@
                         $("div.bs-docs-section").load("{{path('tres')}}");
                         })
                         .fail(function() {
-                        alert( "error" );
+                        alert( "Error, Verifique los datos" );
                         });
                 }
 			
@@ -115,5 +121,6 @@
                         $("input[name='persona_nombre']").val(result.trim());
                 });//fin get
         });//fin    change input
-     });//fin document ready                
+     });//fin document ready        
+     
 </script>

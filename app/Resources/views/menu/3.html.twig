@@ -1,3 +1,4 @@
+ <link href="{{ asset('css/lifo_typeahead.css') }}" rel="stylesheet" media="screen">
 <div class="page-header">
       <h1 id="validator">Declaración Jurada de Origen <small>Perfil del Producto</small></h1>
     </div>
@@ -9,10 +10,8 @@
 
 	<div class="row">
       <form data-toggle="validator" role="form">
-
         <div class="form-group col-md-9">
-          <label class="control-label" for="remoteValidator">Lugar de Destino</label>
-          <input type="text" placeholder="Ingrese lugar de destino" name="destino_lugar" id="remoteValidator" class="form-control" data-remote="/validate">
+          {{ form_row(form.idPais) }}
            <div class="help-block with-errors">Verifique el lugar de destino</div>
         </div>
         <div class="form-group col-md-3">
@@ -54,16 +53,26 @@
     </div>
  </div>
     
-    
+         <script src={{asset('js/lifo_typeahead.js')}} type="text/javascript"></script>
+
  <script>
+     
     $("button").click(function(e){
 		var pagina=$(this).attr("id");
-		$("div.bs-docs-section").empty();
                 e.preventDefault();
 		if(pagina==2){
+                    $("div.bs-docs-section").empty();
                     $("div.bs-docs-section").load("{{path('dos')}}");
-                }else{
-                    $("div.bs-docs-section").load("{{path('cuatro')}}");
+                }else{//avanzar
+                    id_registro=$('input#registro_idregistro:hidden').val();
+                    id_pais=$('input#registro_pais_idPais:hidden').val();
+                    $.post( "{{path('nuevo_registropais')}}", { 'id_registro': id_registro, 'id_pais':id_pais} )
+                        .done(function( data ) {
+                         $("div.bs-docs-section").load("{{path('cuatro')}}");
+                        })
+                        .fail(function() {
+                        alert( "Error, verifique los datos" );
+                        });
                 }
 
 			
