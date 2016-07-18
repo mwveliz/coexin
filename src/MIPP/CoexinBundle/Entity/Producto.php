@@ -252,4 +252,9 @@ class Producto
     {
         return $this->idMoneda;
     }
+   
+    public function __toString()
+    {
+        return (string)$this->getDenominacionComercial();
+    }
 }

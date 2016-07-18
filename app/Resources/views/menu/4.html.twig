@@ -10,6 +10,7 @@
     <div class="well">
   <form data-toggle="validator" name="formulario" id="formulario" action="" role="form">
           <input type="hidden" name="producto_registro" id="producto_registro">
+          
 	<div class="row">
     
         <div class="form-group col-md-6">
@@ -57,7 +58,7 @@
 		
 		<div class="col-md-4">
 		  <label class="control-label" for="remoteValidator">Material Importado</label>
-          <input type="text" placeholder="Ingrese descripción del material" name="material_importado" id="remoteValidator" class="form-control fila_importado" data-remote="/validate">
+          <input type="text" placeholder="Ingrese descripción del material" name="material_importado" id="mi_mi" class="form-control fila_importado" data-remote="/validate">
            <div class="help-block with-errors">Verifique material</div>
        
 		</div>	
@@ -67,13 +68,13 @@
            <div class="help-block with-errors">Verifique código</div>
 		</div>
 		<div class="col-md-2">
-		    {{ form_row(form_pais.idPais) }}      
+		    {{ form_row(form_pais.idPais, { 'attr': {'class': 'fila_importado'}}) }}      
          <div class="help-block with-errors">Verifique País</div>
        
 		</div>	
 		<div class="col-md-2">
 			<label class="control-label" for="remoteValidator">Incidencia </label>
-          <input type="number" placeholder="Ingrese incidencia sobre costo" name="material_importado_indidencia" id="remoteValidator" class="form-control fila_importado" data-remote="/validate">
+          <input type="number" placeholder="Ingrese incidencia sobre costo" name="material_importado_indidencia" id="mi_incidencia" class="form-control fila_importado" data-remote="/validate">
            <div class="help-block with-errors">Verifique monto</div>
 		</div>
 		
@@ -112,18 +113,18 @@
 		
 		<div class="col-md-4">
 		  <label class="control-label" for="remoteValidator">Material Nacional</label>
-          <input type="text" placeholder="Ingrese descripción del material" name="material_nacional" id="remoteValidator" class="form-control fila_nacional" data-remote="/validate">
+          <input type="text" placeholder="Ingrese descripción del material" name="material_nacional" id="mn_mn" class="form-control fila_nacional" data-remote="/validate">
            <div class="help-block with-errors">Verifique material</div>
        
 		</div>	
 		<div class="col-md-2">
 			
-                        {{ form_row(form_producto.idCodigoArancelario ,{ 'attr': {'id':'material_nacional_codigo_arancelario' , 'class': 'fila_nacional'}})  }}      
+                        {{ form_row(form_producto.idCodigoArancelario ,{ 'attr': {'class': 'fila_nacional'}})  }}      
            <div class="help-block with-errors">Verifique código</div>
 		</div>
 		<div class="col-md-2">
 		  <label class="control-label" for="remoteValidator">Productor Nacional</label>
-          <input type="text" placeholder="Ingrese descripción del material" name="material_nacional_productor" id="remoteValidator" class="form-control fila_nacional" data-remote="/validate">
+          <input type="text" placeholder="Ingrese descripción del material" name="material_nacional_productor" id="mn_productor" class="form-control fila_nacional" data-remote="/validate">
            <div class="help-block with-errors">Verifique País</div>
        </div>
  </div>
@@ -131,12 +132,12 @@
  <div class="row">
 	<div class="col-md-4">
 		  <label class="control-label" for="remoteValidator">Proveedor</label>
-          <input type="text" placeholder="Ingrese descripción del material" name="material_nacional_proveedor" id="remoteValidator" class="form-control fila_nacional" data-remote="/validate">
+          <input type="text" placeholder="Ingrese descripción del material" name="material_nacional_proveedor" id="mn_proveedor" class="form-control fila_nacional" data-remote="/validate">
            <div class="help-block with-errors">Verifique País</div>
        </div>		
 		<div class="col-md-4">
 			<label class="control-label" for="remoteValidator">Incidencia sobre el costo</label>
-          <input type="number" placeholder="Ingrese incidencia sobre costo" name="material_nacional_indidencia" id="remoteValidator" class="form-control fila_nacional" data-remote="/validate">
+          <input type="number" placeholder="Ingrese incidencia sobre costo" name="material_nacional_indidencia" id="mn_incidencia" class="form-control fila_nacional" data-remote="/validate">
            <div class="help-block with-errors">Verifique monto</div>
 		</div>
 		
@@ -228,8 +229,12 @@ $(document).ready(function(){
                     $("#producto_idCodigoNcm_text").val($("#producto_idCodigoNcm:hidden" ).val());
                     $.post( "{{path('nuevo_registroproducto')}}",  $("form").serialize() )
                         .done(function( data ) {
-                         //$("div.bs-docs-section").load("{{path('cinco')}}");
-                         //$("input#registro_idproducto").val(id_producto);//seteo el valor del id producto  
+                            $("input#registro_idproducto").val(data.id_producto);//seteo el valor del id producto  
+                         $("input#registro_nombreproducto").val(data.producto_nombre);//seteo el valor del id producto  
+                         $("input#registro_unidadmedida").val(data.producto_unidadmedida);//seteo el valor del id producto  
+                          $("div.bs-docs-section").empty();
+                         $("div.bs-docs-section").load("{{path('cinco') }}");
+                         
                         })
                         .fail(function() {
                         alert( "Error, verifique los datos" );
@@ -245,8 +250,9 @@ $(document).ready(function(){
 	/*****AGREGANDO A LA PRIMERA TABLA****/
 	$("#agrega_importado").click(function(){
 		var fila='<tr>';
-		$("input.fila_importado:not(:hidden)").each(function( index ) {
-			fila=fila+'<td>'+$(this).val()+'</td>';
+		$("input.fila_importado:not(:hidden)").each(function( index, element ) {
+			fila=fila+'<td><input  style="border:none; background-color:#F5F5F5" type="text" value="'+
+                        $(this).val()+'"id="'+element.id+'_material_importado['+$("#importado >tbody >tr").length+']" name="'+element.id+'_material_importado['+$("#importado >tbody >tr").length+']"></td>';
 		});
 		fila=fila+'<td><a><span onclick="borra_importado(getRowIndex(this))" style="font-size: 25px; cursor: pointer;" data-toggle="tooltip" title="Borrar" class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></a></td></tr>';
 		$("#importado").append(fila);
@@ -258,8 +264,9 @@ $(document).ready(function(){
 		/**********AGREGANDO A LA SEGUNDA LA PRIMERA TABLA****/
 	$("#agrega_nacional").click(function(){
 		var fila='<tr>';
-		$(".fila_nacional:not(:hidden)").each(function( index ) {
-			fila=fila+'<td>'+$(this).val()+'</td>';
+		$(".fila_nacional:not(:hidden)").each(function( index,element ) {
+			fila=fila+'<td><input  style="border:none; background-color:#F5F5F5" type="text" value="'+
+                        $(this).val()+'"id="'+element.id+'_material_nacional['+$("#nacional >tbody >tr").length+']" name="'+element.id+'_material_nacional['+$("#nacional >tbody >tr").length+']"></td>';
 		});
 		fila=fila+'<td><a><span onclick="borra_nacional(getRowIndex(this))" style="font-size: 25px; cursor: pointer;" data-toggle="tooltip" title="Borrar" class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></a></td></tr>';
 		$("#nacional").append(fila);

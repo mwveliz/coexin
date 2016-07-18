@@ -3,6 +3,7 @@
 namespace MIPP\CoexinBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -57,6 +58,42 @@ class CostoController extends Controller
             'costo' => $costo,
             'form' => $form->createView(),
         ));
+    }
+    
+    
+    /**
+     * Creates via ajax a new Costo entity.
+     *
+     * @Route("/nuevo_costo", name="nuevo_costo")
+     * @Method({"GET", "POST"})
+     */
+    public function nuevoregistroproductoAction(Request $request)
+    {   
+        
+        $em = $this->getDoctrine()->getManager();
+        
+       $arreglo=$request->get('costo');
+       $id_producto=  $arreglo['idProducto'];
+       $costo= new Costo();
+       $costo->setIdProducto($em->getReference('MIPP\CoexinBundle\Entity\Producto', $id_producto));
+       $form = $this->createForm('MIPP\CoexinBundle\Form\CostoType', $costo);
+       $form->handleRequest($request);
+      // if ( $form->isValid()) {
+        $em->persist($costo);
+        $em->flush();
+        //}
+        
+    //   $producto->setDenominacionComercial($request->get('id_producto'));
+     //  $costo->setIdProducto($em->getReference('MIPP\CoexinBundle\Entity\Producto', $id_producto));
+       
+       
+   
+        
+           
+        //salvando relacion de materiales con el prod
+        
+        
+        return new Response('ok');
     }
 
     /**

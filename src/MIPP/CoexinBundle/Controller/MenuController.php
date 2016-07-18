@@ -16,6 +16,13 @@ use MIPP\CoexinBundle\Entity\Producto;
 use MIPP\CoexinBundle\Form\ProductoType;
 use MIPP\CoexinBundle\Entity\Material;
 use MIPP\CoexinBundle\Form\MaterialType;
+use MIPP\CoexinBundle\Entity\Costo;
+use MIPP\CoexinBundle\Form\CostoType;
+use MIPP\CoexinBundle\Entity\DocumentoEmpresa;
+use MIPP\CoexinBundle\Form\DocumentoEmpresaType;
+use MIPP\CoexinBundle\Entity\DocumentoProducto;
+use MIPP\CoexinBundle\Form\DocumentoProductoType;
+
 /**
  * Menu controller.
  *
@@ -132,10 +139,16 @@ class MenuController extends Controller
      */
     public function cincoAction(Request $request)
 {
-    $template = $this->renderView('menu/5.html.twig');
-    return new Response($template);
-}
-
+    
+    $costo= new Costo();
+        
+        $form = $this->createForm('MIPP\CoexinBundle\Form\CostoType', $costo);
+     return $this->render('menu/5.html.twig', array(
+            'form' => $form->createView(),
+           'data' => $request->get('data'),
+            
+        ));
+} 
  /**
      * Load 6th template via ajax
      *
@@ -144,8 +157,14 @@ class MenuController extends Controller
      */
     public function seisAction(Request $request)
 {
-    $template = $this->renderView('menu/6.html.twig');
-    return new Response($template);
+        
+    $documento_producto= new DocumentoProducto();
+     $form = $this->createForm('MIPP\CoexinBundle\Form\DocumentoProductoType', $documento_producto);
+    return $this->render('menu/6.html.twig', array(
+            'form' => $form->createView(),
+         
+            
+        ));
 }
  /**
      * Load 7th template via ajax
@@ -155,8 +174,13 @@ class MenuController extends Controller
      */
     public function sieteAction(Request $request)
 {
-    $template = $this->renderView('menu/7.html.twig');
-    return new Response($template);
+   $documento_producto= new DocumentoProducto();
+     $form = $this->createForm('MIPP\CoexinBundle\Form\DocumentoProductoType', $documento_producto);
+    return $this->render('menu/7.html.twig', array(
+            'form' => $form->createView(),
+         
+            
+        ));
 }
 
 /**
@@ -167,8 +191,13 @@ class MenuController extends Controller
      */
     public function ochoAction(Request $request)
 {
-    $template = $this->renderView('menu/8.html.twig');
-    return new Response($template);
+    $documento_empresa= new DocumentoEmpresa();
+     $form = $this->createForm('MIPP\CoexinBundle\Form\DocumentoEmpresaType', $documento_empresa);
+    return $this->render('menu/8.html.twig', array(
+            'form' => $form->createView(),
+         
+            
+        ));
 }
 
 }

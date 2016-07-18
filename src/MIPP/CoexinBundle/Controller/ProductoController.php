@@ -93,14 +93,52 @@ class ProductoController extends Controller
         $em->flush();
         
         //salvando materiales
+        //importados
+        $mis=$request->get('mi_mi_material_importado');
+        $micas=$request->get('material_idCodigoArancelario_text_material_importado');
+        $mips=$request->get('registro_pais_idPais_text_material_importado');
+        $miis=$request->get('mi_incidencia_material_importado');
+      
+        foreach ($mis as $indice => $mi){
+           $material= new Material(); 
+           $material->setDescripcion($mi);
+           //$material->setIdCodigoArancelario($em->getReference('MIPP\CoexinBundle\Entity\CodigoArancelario', $micas[$indice]));
+           $material->setIncidenciaSobreCosto($miis[$indice]);
+           $em->persist($material);
+           $em->flush();
+        }
         
-        $material= new Material();
-                
+   
+          //nacionales
+        $mns=$request->get('mn_mn_material_nacional');
+        $mncas=$request->get('producto_idCodigoArancelario_text_material_nacional');
+       $mnprods=$request->get('mn_productor_material_nacional');
+       $mnprovs=$request->get('mn_proveedor_material_nacional');
+       $mnis=$request->get('mn_incidencia_material_nacional');
+       
+       
+      
+        foreach ($mns as $indice=>$mn ){
+           $material= new Material(); 
+           $material->setDescripcion($mn);
+           //$material->setIdCodigoArancelario($em->getReference('MIPP\CoexinBundle\Entity\CodigoArancelario', $mncas[$indice]));
+           $material->setIncidenciaSobreCosto($mnis[$indice]);
+           $material->setNombreProductor($mnprods[$indice]);
+           $material->setNombreProveedor($mnprovs[$indice]);
+           $material->setMaterialNacional(true);
+           $em->persist($material);
+           $em->flush();
+        }
         
+           
         //salvando relacion de materiales con el prod
         
+        $arreglo=array( 'id_producto'=>$producto->getId(),
+                        'producto_nombre'=>$producto->getDenominacionComercial(),
+                        'producto_unidadmedida'=> $producto->getUnidadMedida());
         
-        return new Response($id_producto);
+        
+        return new JsonResponse($arreglo);
     }
     /**
      * Finds and displays a Producto entity.

@@ -6,23 +6,24 @@
     <p>P-3</p>
     
     <div class="well">
-
+      <form id="formulario" name="formulario" data-toggle="validator" role="form">
 	<div class="row">
-      <form data-toggle="validator" role="form">
+
+            <input type="hidden" name="costo[idProducto]" id="costo_idProducto">
         <div class="form-group col-md-4">
           <label class="control-label" for="remoteValidator">Denominación Comercial del Producto a Exportar</label>
-          <input type="text" placeholder="Ingrese nombre comercial del producto" name="estructura_nombre" id="remoteValidator" class="form-control" data-remote="/validate">
-           <div class="help-block with-errors">Verifique el nombre comercial del producto</div>
+          <input type="text" style="border:none; background-color:#F5F5F5"  name="producto_nombre" id="producto_nombre" class="form-control" data-remote="/validate">
+          
         </div>
         <div class="form-group col-md-4">
           <label class="control-label" for="remoteValidator">Unidad de Medida</label>
-          <input type="number" placeholder="Ingrese unidad de medida" name="estructura_unidad" id="remoteValidator" class="form-control" data-remote="/validate">
-           <div class="help-block with-errors">Verifique la unidad de medida del producto</div>
+          <input type="number" style="border:none; background-color:#F5F5F5"  name="producto_unidadmedida" id="producto_unidadmedida" class="form-control" data-remote="/validate">
+     
         </div>
 		<div class="form-group col-md-4">
           <label class="control-label" for="remoteValidator">Tipo de Moneda</label>
-          <input type="number" placeholder="Ingrese tipo de Moneda" name="estructura_moneda" value="Bs." id="remoteValidator" class="form-control" data-remote="/validate">
-           <div class="help-block with-errors">Verifique la descripción</div>
+          <input type="text" style="border:none; background-color:#F5F5F5"  readonly name="producto_moneda" value="Bs." id="remoteValidator" class="form-control" data-remote="/validate">
+         
         </div>			
 	</div>
 
@@ -50,19 +51,19 @@
 				</tr>
 				<tr>
 				<td>Mano de obra</td>
-				<td id="mano_obra"><input type="number"></td>
+				 <td id="mano_obra"> {{ form_row(form.manoObra,{ 'attr': {'class': 'number_format'}})  }}     </td>
 				</tr>
 				<tr>
 				<td>Depreciación</td>
-				<td id="depreciación"><input type="number"></td>
+                                <td id="depreciación"> {{ form_row(form.depreciacion,{ 'attr': {'class': 'number_format'}})  }}     </td>
 				</tr>	
 				<tr>
 				<td>Otros Costos Directos</td>
-				<td id="otros_directos"><input type="number"></td>
+				<td id="otros_directos">{{ form_row(form.otroCostoDirecto,{ 'attr': {'class': 'number_format'}})  }} </td>
 				</tr>	
 				<tr>
 				<td>Total</td>
-				<td id="total_directos"> <input type="text" readonly></td>
+				<td id="total_directos"> <input type="text" name="costo_total_directos" readonly></td>
 				</tr>
 					
 				</tbody>
@@ -91,19 +92,19 @@
 				<tbody>
 				<tr>
 				<td>Gastos Administrativos</td>
-				<td id="gastos_admin"><input type="number"></td>
+				<td id="gastos_admin">{{ form_row(form.otroCostoDirecto,{ 'attr': {'class': 'number_format'}})  }} </td>
 				</tr>
 				<tr>
 				<td>Gastos de Publicidad</td>
-				<td id="gastos_publicidad"><input type="number"></td>
+				<td id="gastos_publicidad">{{ form_row(form.gastoPublicidad,{ 'attr': {'class': 'number_format'}})  }} </td>
 				</tr>	
 				<tr>
 				<td>Gastos de Ventas</td>
-				<td id="gastos_ventas"><input type="number"></td>
+				<td id="gastos_ventas">{{ form_row(form.gastoVenta,{ 'attr': {'class': 'number_format'}})  }} </td>
 				</tr>	
 				<tr><tr>
 				<td>Otros Gastos Indirectos</td>
-				<td id="otros_indirectos"><input type="number"></td>
+				<td id="otros_indirectos">{{ form_row(form.otroGastoIndirecto,{ 'attr': {'class': 'number_format'}})  }} </td>
 				</tr>	
 				<tr>
 				<td>Total</td>
@@ -129,62 +130,27 @@
 		<div class="col-md-5">
 		<div class="table-responsive">
 		<table id="utilidad" class="table table-hover">
+                                <thead>
+				<tr>
+				<th></th>
+				<th></th>
 				<tbody>
 				<tr>
 				<td>Utilidad</td>
-				<td id="utilidad"><input type="number"></td>
+				<td id="utilidad">{{ form_row(form.otroGastoIndirecto,{ 'attr': {'class': 'number_format'}})  }} </td>
 				</tr>
-				</tbody>
-		</table>
-		</div>
-		</div>	
-</div>
-
-<div class="row">
-	 	<div class="col-md-3">
-		</div>
-		<div class="col-md-5">
-		<div class="table-responsive">
-		<table id="puerta" class="table table-hover">
-				<tbody>
-				<tr>
+			
+		
 				<td>Precio a puerta de fábrica</td>
-				<td id="precio_puerta"><input type="number"></td>
+				<td id="precio_puerta">{{ form_row(form.precioPuertaFabrica,{ 'attr': {'class': 'number_format'}})  }} </td>
 				</tr>
-				</tbody>
-		</table>
-		</div>
-		</div>	
-</div>
-
-<div class="row">
-	 	<div class="col-md-3">
-		</div>
-		<div class="col-md-5">
-		<div class="table-responsive">
-		<table id="flete" class="table table-hover">
-				<tbody>
 				<tr>
 				<td>Flete Interno</td>
-				<td id="flete"><input type="number"></td>
+				<td id="flete">{{ form_row(form.fleteInterno,{ 'attr': {'class': 'number_format'}})  }} </td>
 				</tr>
-				</tbody>
-		</table>
-		</div>
-		</div>	
-</div>
-
-
-<div class="row">
-	 	<div class="col-md-3">
-		</div>
-		<div class="col-md-5">
-		<div class="table-responsive">
-		<table id="precio_total" class="table table-hover">
-				<tbody>
 				<tr>
 				<td>Precio FOB/FOC de Exportación</td>
-				<td id="precio_total"><input type="number"></td>
+				<td id="precio_total">{{ form_row(form.precioFobExportacion,{ 'attr': {'class': 'number_format'}})  }} </td>
 				</tr>
 				</tbody>
 		</table>
@@ -212,11 +178,21 @@
         </div>
            
            
-      </form>
+  
     </div>
+    </form>
+    </div>    
     
   <script>
 $(document).ready(function(){
+   $("#costo_idProducto").val($("input#registro_idproducto:hidden").val());
+   $("#producto_unidadmedida").val($("input#registro_unidadmedida:hidden").val());
+  $("input#producto_registro").val($("input#registro_idproducto:hidden").val());
+  $("#producto_nombre").val($("input#registro_nombreproducto:hidden").val());
+   $("#producto_unidadmedida").val($("input#registro_unidadmedida:hidden").val());
+  $("#producto_nombre").prop('readonly', true);
+   $("#producto_unidadmedida").prop('readonly', true);
+  
    
    
     $("button").click(function(e){
@@ -230,7 +206,7 @@ $(document).ready(function(){
                 }
                 if(pagina==3){
                     var r = confirm("Seguro que desea agregar mas productos? no podrá avanzar si no agrega productos");
-                    if (r == true) {
+                    if (r == true) {//devolver
                         e.preventDefault();
                         $("div.bs-docs-section").empty();
                         $("div.bs-docs-section").load("{{path('cuatro')}}");
@@ -241,12 +217,19 @@ $(document).ready(function(){
                 if(pagina==6){
                 var txt;
                 var r = confirm("Seguro que no desea agregar mas productos? Luego no podrá volver");
-                    if (r == true) {
+                    if (r == true) {//avanzar
                         e.preventDefault();
+                        $.post( "{{path('nuevo_costo')}}",  $("form").serialize() )
+                        .done(function( data ) {
                         $("div.bs-docs-section").empty();
                         $("div.bs-docs-section").load("{{path('seis')}}");
+                        })
+                        .fail(function() {
+                        alert( "Error, verifique los datos" );
+                        });
                     } else {
-                        e.preventDefault();   
+                        e.preventDefault();
+                        
                 }
                 }
                 
