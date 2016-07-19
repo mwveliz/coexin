@@ -96,4 +96,9 @@ class Moneda
     {
         return $this->idPais;
     }
+    
+    public function __toString()
+    {
+        return (string)$this->descripcion;
+    }
 }

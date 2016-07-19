@@ -729,4 +729,9 @@ class Empresa
     {
         return $this->idTipoEmpresa;
     }
+    
+    public function __toString()
+    {
+        return (string)$this->descripcion;
+    }
 }

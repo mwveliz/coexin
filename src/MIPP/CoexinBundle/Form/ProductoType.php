@@ -15,10 +15,10 @@ class ProductoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            //->add('denominacionComercial')
-            //->add('unidadMedida')
-            //->add('procesoProductivoLiteral')
-            //->add('isActive')
+           ->add('denominacionComercial')
+            ->add('unidadMedida')
+            ->add('procesoProductivoLiteral')
+            ->add('isActive')
             ->add('idCodigoArancelario','entity_typeahead', array(
                 'label' => 'Código Arancelario',
                 'class' => 'CoexinBundle:CodigoArancelario;',
@@ -37,7 +37,7 @@ class ProductoType extends AbstractType
                     'class' => 'form-control form-group'
                 ),
             ))
-            //->add('idMoneda')
+            ->add('idMoneda')
         ;
     }
     

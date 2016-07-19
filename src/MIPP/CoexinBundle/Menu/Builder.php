@@ -27,57 +27,23 @@ class Builder implements ContainerAwareInterface
         //    'routeParameters' => array('id' => $registro->getId())
        // ));
 
-        $menu->addChild('Listar Registros', array(
-            'route' => 'registro_index',
-            
-        //    'routeParameters' => array('id' => $registro->getId())
-        ));
-        
-        
-         $menu->addChild('Listar Empresas', array(
-            'route' => 'empresa_index',
-        //    'routeParameters' => array('id' => $registro->getId())
-        ));
-
-         $menu->addChild('Listar Usuarios', array(
-            'route' => 'persona_index',
-        //    'routeParameters' => array('id' => $registro->getId())
-        ));
-         
-         $menu->addChild('Listar Materiales', array(
-            'route' => 'material_index',
-        //    'routeParameters' => array('id' => $registro->getId())
-        ));
-         
-        $menu->addChild('Listar Productos', array(
-            'route' => 'producto_index',
-        //    'routeParameters' => array('id' => $registro->getId())
-        ));
-        
-        $menu->addChild('Listar Paises', array(
-            'route' => 'pais_index',
-        //    'routeParameters' => array('id' => $registro->getId())
-        ));
-         
-        $menu->addChild('Listar Documentos', array(
-            'route' => 'documentoempresa_index',
-        //    'routeParameters' => array('id' => $registro->getId())
-        ));
-       
-        $menu->addChild('Listar Catalogos', array(
-            'route' => 'documentoproducto_index',
-        //    'routeParameters' => array('id' => $registro->getId())
-        ));
-         
-        
+         $menu->addChild('Listar Registros', array('route' => 'registro_index'));
+         $menu->addChild('Listar Empresas', array('route' => 'empresa_index'));
+         $menu->addChild('Listar Usuarios', array('route' => 'persona_index'));
+         $menu->addChild('Listar Materiales', array('route' => 'material_index'));
+         $menu->addChild('Listar Productos', array('route' => 'producto_index'));
+         $menu->addChild('Listar Documentos', array('route' => 'documentoempresa_index'));
+         $menu->addChild('Listar Catálogos', array('route' => 'documentoproducto_index'));
+         $menu->addChild('Cadenas de costos', array('route' => 'costo_index'));
+         $menu->addChild('Sistema', array());
           
+         $menu['Sistema']->addChild('Códigos NCM', array('route' => 'codigoncm_index')); 
+         $menu['Sistema']->addChild('Códigos Arancelarios', array('route' => 'codigoarancelario_index')); 
+         $menu['Sistema']->addChild('Países', array('route' => 'pais_index')); 
+         $menu['Sistema']->addChild('Tipos de Documento', array('route' => 'tipodocumento_index')); 
+          $menu['Sistema']->addChild('Tipos de Empresa', array('route' => 'tipoempresa_index')); 
 
-        // create another menu item
-        //$menu->addChild('About Me', array('route' => 'about'));
-        // you can also add sub level's to your menu's as follows
-       // $menu['About Me']->addChild('Edit profile', array('route' => 'edit_profile'));
-
-        // ... add more children
+         
 
         return $menu;
     }

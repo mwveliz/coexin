@@ -1,41 +1,67 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Registro list</h1>
+    <h1>Registros</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Codigoregistro</th>
-                <th>Id</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for registro in registros %}
-            <tr>
-                <td><a href="{{ path('registro_show', { 'id': registro.id }) }}">{{ registro.fecha|date }}</a></td>
-                <td>{{ registro.codigoRegistro }}</td>
-                <td>{{ registro.id }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('registro_show', { 'id': registro.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('registro_edit', { 'id': registro.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('registro_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+                    <div class="row">
+                       <div class="col-xs-12 col-sm-12        col-md-12 col-lg-12 ">
+                            <a class="btn btn-success" href="{{ path('registro_new') }}" ><span>Agregar</span></a>
+                            <br><br>                            
+                            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption font-green">
+                                        <i class="icon-settings font-green"></i>
+                                        <span class="caption-subject bold uppercase"></span>
+                                    </div>
+                                    <div class="tools"> </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_1">
+                                        <thead>
+                                            <tr>
+                                                <th class="all" width="10%">Detalle</th>
+                                                <th class="all" width="10%">Editar</th>
+                                                <th class="all">Fecha</th>
+                                                <th class="all">Código</th>
+                                                <th class="all">Empresa</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for Registro in registros%}
+                                            <tr>
+                                                <td>
+                                                    <center>
+                                                        <a href="{{ path('registro_show', { 'id': Registro.id }) }}">
+                                                            <i class="glyphicon glyphicon-search"></i>
+                                                        </a>      
+                                                    </center>
+                                                </td>
+                                                    <td>
+                                                    <center>
+                                                        <a href="{{ path('registro_edit', { 'id': Registro.id }) }}">
+                                                            <i class="glyphicon glyphicon-pencil"></i>
+                                                        </a>      
+                                                    </center>
+                                                </td>
+                                            
+                                                 <td>{{ Registro.fecha| date("d/m/Y")}}</td>    
+                                                  <td>{{ Registro.codigoRegistro| raw }}</td>          
+                                                <td>{{ Registro.idEmpresa| raw }}</td>                                                
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>                                        
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- END EXAMPLE TABLE PORTLET-->
+                        </div>
+                        
+                    </div>
+                                    
+                                        
+            <!-- END CONTENT BODY -->
 {% endblock %}
