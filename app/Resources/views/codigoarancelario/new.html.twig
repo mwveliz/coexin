@@ -5,13 +5,15 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-                    <a href="{{ path('codigoarancelario_index') }}" class="btn btn-danger" role="button">Cancelar</a>
+                    <a href="{{ path('codigoarancelario_index') }}" class="btn btn-warning"  role="button">Cancelar</a>
+   
                     <button type="button" class="btn btn-primary"  id="clear">Limpiar</button>
-                    <button type="submit" class="btn btn-info">Enviar</button>    {{ form_end(form) }}
+                    <button type="submit" class="btn btn-info">Enviar</button>   
 
-    <ul>
-        <li>
-            <a href="{{ path('codigoarancelario_index') }}">Back to the list</a>
-        </li>
-    </ul>
+     
+         
+            <a href="{{ path('codigoarancelario_index') }}" class="btn btn-warning"  role="button">Cancelar</a>
+    {{ form_end(form) }}
+         
+     
 {% endblock %}

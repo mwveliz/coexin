@@ -3,8 +3,14 @@
 {% block body %}
     <h1>CodigoArancelario</h1>
 
-    <table>
-        <tbody>
+    
+
+     
+         
+        <table class="table table-striped table-bordered table-hover dt-responsive" width="70%" id="sample_2">
+<tbody>
+     
+         
             <tr>
                 <th>Descripcion</th>
                 <td>{{ codigoArancelario.descripcion }}</td>
@@ -14,23 +20,26 @@
                 <td>{% if codigoArancelario.fecha %}{{ codigoArancelario.fecha|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Id</th>
-                <td>{{ codigoArancelario.id }}</td>
+                
+              
             </tr>
         </tbody>
-    </table>
+   </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('codigoarancelario_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('codigoarancelario_edit', { 'id': codigoArancelario.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+     
+         {{ form_start(delete_form) }}
+
+     
+         
+            <a href="{{ path('codigoarancelario_index') }}" class="btn btn-warning" role="button">Cancelar</a>
+         
+         
+            <a href="{{ path('codigoarancelario_edit', { 'id': codigoArancelario.id }) }}" class="btn btn-info" role="button">Editar</a>
+         
+         
+            
+                <button type="submit" class="btn btn-danger">Eliminar</button>
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+         
+     
 {% endblock %}

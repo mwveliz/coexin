@@ -1,39 +1,76 @@
+
+    
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>TipoEmpresa list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Descripcion</th>
-                <th>Id</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for tipoEmpresa in tipoEmpresas %}
-            <tr>
-                <td><a href="{{ path('tipoempresa_show', { 'id': tipoEmpresa.id }) }}">{{ tipoEmpresa.descripcion }}</a></td>
-                <td>{{ tipoEmpresa.id }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('tipoempresa_show', { 'id': tipoEmpresa.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('tipoempresa_edit', { 'id': tipoEmpresa.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('tipoempresa_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+       <h1>Tipos de Empresa</h1>
+    <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+                    <div class="row">
+                       <div class="col-xs-12 col-sm-12        col-md-12 col-lg-12 ">
+                            <a class="btn btn-success" href="{{ path('tipoempresa_new') }}" ><span>Agregar</span></a>
+                            <br><br>                            
+                            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption font-green">
+                                        <i class="icon-settings font-green"></i>
+                                        <span class="caption-subject bold uppercase"></span>
+                                    </div>
+                                    <div class="tools"> </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_1">
+                                        <thead>
+                                            <tr>
+                                                
+                                                <th class="all" width="10%">Detalle</th>
+                                                <th class="all" width="10%">Editar</th>
+                                                <th class="all">Descripción</th>
+                                                
+                                                
+                                               
+                                                
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for tipoEmpresa in tipoEmpresas%}
+                                            <tr>
+                                                <td>
+                                                    <center>
+                                                        <a href="{{ path('tipoempresa_show', { 'id': tipoEmpresa.id }) }}">
+                                                            <i class="glyphicon glyphicon-search"></i>
+                                                        </a>      
+                                                    </center>
+                                                </td>
+                                                    <td>
+                                                    <center>
+                                                        <a href="{{ path('tipoempresa_edit', { 'id': tipoEmpresa.id }) }}">
+                                                            <i class="glyphicon glyphicon-pencil"></i>
+                                                        </a>      
+                                                    </center>
+                                                </td>
+                                            
+                                                <td>{{ tipoEmpresa.descripcion}}</td>  
+                                              
+                                               
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>                                        
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- END EXAMPLE TABLE PORTLET-->
+                        </div>
+                        
+                    </div>
+                                    
+                                        
+            <!-- END CONTENT BODY -->
+            
+        </div>                                      
+        <!-- END CONTAINER -->
+        
 {% endblock %}

@@ -3,8 +3,14 @@
 {% block body %}
     <h1>Pais</h1>
 
-    <table>
-        <tbody>
+    
+
+     
+         
+        <table class="table table-striped table-bordered table-hover dt-responsive" width="70%" id="sample_2">
+<tbody>
+     
+         
             <tr>
                 <th>Descripcion</th>
                 <td>{{ pai.descripcion }}</td>
@@ -14,23 +20,26 @@
                 <td>{{ pai.codigo }}</td>
             </tr>
             <tr>
-                <th>Id</th>
-                <td>{{ pai.id }}</td>
+                
+              
             </tr>
         </tbody>
-    </table>
+   </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('pais_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('pais_edit', { 'id': pai.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+     
+         {{ form_start(delete_form) }}
+
+     
+         
+            <a href="{{ path('pais_index') }}" class="btn btn-warning" role="button">Cancelar</a>
+         
+         
+            <a href="{{ path('pais_edit', { 'id': pai.id }) }}" class="btn btn-info" role="button">Editar</a>
+         
+         
+            
+                <button type="submit" class="btn btn-danger">Eliminar</button>
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+         
+     
 {% endblock %}

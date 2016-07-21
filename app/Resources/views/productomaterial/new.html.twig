@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>ProductoMaterial creation</h1>
+    <h1>ProductoMaterial - Nuevo registro</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        <button type="submit" class="btn btn-success ">Crear</button>
+   
 
-    <ul>
-        <li>
-            <a href="{{ path('productomaterial_index') }}">Back to the list</a>
-        </li>
-    </ul>
+     
+         
+            <a href="{{ path('productomaterial_index') }}" class="btn btn-warning"  role="button">Cancelar</a>
+    {{ form_end(form) }}
+         
+     
 {% endblock %}

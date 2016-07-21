@@ -1,21 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Producto edit</h1>
+    <h1>Producto - Editar registro</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('producto_index') }}">Back to the list</a>
-        </li>
-        <li>
+    
+        <button type="button" class="btn btn-primary"  id="clear">Limpiar</button>
+       <button type="submit" class="btn btn-success ">Editar</button>
+   
+
+     
+         
+           
+        
+        <a href="{{ path('producto_index') }}" class="btn btn-warning" role="button">Cancelar</a>
+    {{ form_end(edit_form) }}
+    
+         
+         
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+         
+     
 {% endblock %}
